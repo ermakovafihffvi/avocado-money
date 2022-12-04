@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 
 function SavingExpensedTable(props) {
     let savingsArr = props.savingsArr;
-console.log(savingsArr);
+
     return (
         <>
             <Typography variant="h3" gutterBottom>Траты из отложенных</Typography>
