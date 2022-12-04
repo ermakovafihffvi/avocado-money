@@ -27,15 +27,15 @@ console.log(savingsArr);
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Object.keys(savingsArr.categories).map((row) => (
-                            <TableRow key={savingsArr.categories[row].id}
+                        {savingsArr.expenses.map((row) => (
+                            <TableRow key={row.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">{savingsArr.categories[row].created_at}</TableCell>
-                                <TableCell>{savingsArr.categories[row].sum}</TableCell>
-                                <TableCell>{savingsArr.categories[row].desc}</TableCell>
-                                <TableCell>{savingsArr.categories[row].title}</TableCell>
-                                <TableCell>{savingsArr.categories[row].name}</TableCell>
+                                <TableCell component="th" scope="row">{row.created_at}</TableCell>
+                                <TableCell>{row.sum}</TableCell>
+                                <TableCell>{row.desc}</TableCell>
+                                <TableCell>{row.title}</TableCell>
+                                <TableCell>{row.name}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

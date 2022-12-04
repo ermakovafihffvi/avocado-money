@@ -45,6 +45,7 @@ class Saving extends Controller
 
         $expenses = $this->getSpecialExpences();
         //dump($expenses);
+        $resArr["expenses"] = [];
         foreach($expenses as $exp){
             $resArr["expenses"][] = $exp; //$exp - Объект
             

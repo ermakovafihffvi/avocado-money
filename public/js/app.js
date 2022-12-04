@@ -30375,7 +30375,7 @@ function SavingExpensedTable(props) {
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableBody__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          children: Object.keys(savingsArr.categories).map(function (row) {
+          children: savingsArr.expenses.map(function (row) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_TableRow__WEBPACK_IMPORTED_MODULE_7__["default"], {
               sx: {
                 '&:last-child td, &:last-child th': {
@@ -30385,17 +30385,17 @@ function SavingExpensedTable(props) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
                 component: "th",
                 scope: "row",
-                children: savingsArr.categories[row].created_at
+                children: row.created_at
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                children: savingsArr.categories[row].sum
+                children: row.sum
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                children: savingsArr.categories[row].desc
+                children: row.desc
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                children: savingsArr.categories[row].title
+                children: row.title
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TableCell__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                children: savingsArr.categories[row].name
+                children: row.name
               })]
-            }, savingsArr.categories[row].id);
+            }, row.id);
           })
         })]
       })
