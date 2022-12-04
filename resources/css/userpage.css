@@ -1,0 +1,25 @@
+.userpage-table-block{
+    margin-bottom: 4em;
+}
+
+.userpage-buttons-block{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modalBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.modalBoxItem{
+    margin-bottom: 20px !important;
+}
+
+@media(max-width: 530px){
+    .userpage-buttons-block{
+        display: flex;
+        flex-direction: column;
+    }
+}
