@@ -19,7 +19,7 @@ export const homeError = (err) => ({
 export const homeInitiate = () => {
     return async (dispatch) => {
         dispatch(homeStart())
-        await axios.get(`http://laravelreact/api/home`)
+        await axios.get(`http://${window.location.hostname}/api/home`)
         .then(({data}) => {
             dispatch(homeSuccess(data));
         })

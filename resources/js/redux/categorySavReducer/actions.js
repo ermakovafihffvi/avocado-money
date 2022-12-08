@@ -19,7 +19,7 @@ export const categorySavError = (err) => ({
 export const categorySavInitiate = () => {
     return async (dispatch) => {
         dispatch(categorySavStart())
-        await axios.get(`http://laravelreact/api/category_sav`)
+        await axios.get(`http://${window.location.hostname}/api/category_sav`)
         .then(({data}) => {
             dispatch(categorySavSuccess(data));
         })

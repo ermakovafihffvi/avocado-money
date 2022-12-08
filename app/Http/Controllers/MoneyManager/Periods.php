@@ -1,4 +1,4 @@
-<?
+<?php 
 namespace App\Http\Controllers\MoneyManager;
 
 use Carbon\Carbon;

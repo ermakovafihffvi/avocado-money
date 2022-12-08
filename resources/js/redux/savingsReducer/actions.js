@@ -19,7 +19,7 @@ export const savingsError = (err) => ({
 export const savingsInitiate = () => {
     return async (dispatch) => {
         dispatch(savingsStart())
-        await axios.get(`http://laravelreact/api/savings`)
+        await axios.get(`http://${window.location.hostname}/api/savings`)
         .then(({data}) => {
             dispatch(savingsSuccess(data));
         })

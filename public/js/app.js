@@ -30344,7 +30344,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function SavingExpensedTable(props) {
   var savingsArr = props.savingsArr;
-  console.log(savingsArr);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
       variant: "h3",
@@ -31406,12 +31405,6 @@ function Test() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {//dispatch(testInitiate());
   }, []);
-  /*const fetchCategories = async () => {
-      await axios.get(`http://laravelreact/api/category_exp`).then(({data}) => {
-          setCategories(data);
-      });
-  }*/
-
   console.log(testsArr);
   console.log(loading);
 
@@ -32034,7 +32027,7 @@ var categoryExpInitiate = function categoryExpInitiate() {
             case 0:
               dispatch(categoryExpStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/category_exp").then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/category_exp")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(categoryExpSuccess(data));
               })["catch"](function (e) {
@@ -32185,7 +32178,7 @@ var categoryExpPageInitiate = function categoryExpPageInitiate(categoryStr) {
             case 0:
               dispatch(categoryExpPageStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/category/" + categoryStr).then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/category/") + categoryStr).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(categoryExpPageSuccess(data));
               })["catch"](function (e) {
@@ -32336,7 +32329,7 @@ var categorySavInitiate = function categorySavInitiate() {
             case 0:
               dispatch(categorySavStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/category_sav").then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/category_sav")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(categorySavSuccess(data));
               })["catch"](function (e) {
@@ -32532,7 +32525,7 @@ var homeInitiate = function homeInitiate() {
             case 0:
               dispatch(homeStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/home").then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/home")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(homeSuccess(data));
               })["catch"](function (e) {
@@ -32683,7 +32676,7 @@ var savingsInitiate = function savingsInitiate() {
             case 0:
               dispatch(savingsStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/savings").then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/savings")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(savingsSuccess(data));
               })["catch"](function (e) {
@@ -32834,7 +32827,7 @@ var testInitiate = function testInitiate() {
             case 0:
               dispatch(testStart());
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://laravelreact/api/test").then(function (_ref2) {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://".concat(window.location.hostname, "/api/test")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(testSuccess(data));
               })["catch"](function (e) {
@@ -32868,7 +32861,7 @@ var testPost = function testPost(data) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://laravelreact/api/test/post", data).then(function (_ref4) {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://".concat(window.location.hostname, "/api/test/post"), data).then(function (_ref4) {
                 var data = _ref4.data;
                 dispatch(testPostSuccess(data));
               });
@@ -32894,7 +32887,7 @@ var testUpdate = function testUpdate(data) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://laravelreact/api/test/update", data).then(function (_ref6) {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://".concat(window.location.hostname, "/api/test/update"), data).then(function (_ref6) {
                 var data = _ref6.data;
                 dispatch(testPostSuccess(data));
               });
@@ -32920,7 +32913,7 @@ var testDelete = function testDelete(data) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://laravelreact/api/test/delete", data).then(function (_ref8) {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://".concat(window.location.hostname, "/api/test/delete"), data).then(function (_ref8) {
                 var data = _ref8.data;
                 dispatch(testPostSuccess(data));
               });
@@ -33076,7 +33069,7 @@ var userPageInitiate = function userPageInitiate(userId) {
             case 0:
               dispatch(userStart());
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://laravelreact/api/user/" + userId).then(function (_ref2) {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://".concat(window.location.hostname, "/api/user/") + userId).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(userSuccess(data));
               })["catch"](function (e) {
@@ -33101,9 +33094,9 @@ var userPagePost = function userPagePost(data) {
   var url = "";
 
   if (data.money_type == "expenses") {
-    url = "http://laravelreact/api/user/expenses/post";
+    url = "http://".concat(window.location.hostname, "/api/user/expenses/post");
   } else if (data.money_type == "incomes") {
-    url = "http://laravelreact/api/user/income/post";
+    url = "http://".concat(window.location.hostname, "/api/user/income/post");
   }
 
   return /*#__PURE__*/function () {
@@ -33138,9 +33131,9 @@ var userPageUpdate = function userPageUpdate(data) {
   var url = "";
 
   if (data.money_type == "expenses") {
-    url = "http://laravelreact/api/user/expenses/update";
+    url = "http://".concat(window.location.hostname, "/api/user/expenses/update");
   } else if (data.money_type == "incomes") {
-    url = "http://laravelreact/api/user/income/update";
+    url = "http://".concat(window.location.hostname, "/api/user/income/update");
   }
 
   return /*#__PURE__*/function () {
@@ -33174,9 +33167,9 @@ var userPageDelete = function userPageDelete(data) {
   var url = "";
 
   if (data.money_type == "expenses") {
-    url = "http://laravelreact/api/user/expenses/delete";
+    url = "http://".concat(window.location.hostname, "/api/user/expenses/delete");
   } else if (data.money_type == "incomes") {
-    url = "http://laravelreact/api/user/income/delete";
+    url = "http://".concat(window.location.hostname, "/api/user/income/delete");
   }
 
   return /*#__PURE__*/function () {
@@ -33342,7 +33335,7 @@ var userInitiate = function userInitiate() {
             case 0:
               dispatch(userStart());
               _context.next = 3;
-              return axios.get("http://laravelreact/api/userinfo").then(function (_ref2) {
+              return axios.get("http://".concat(window.location.hostname, "/api/userinfo")).then(function (_ref2) {
                 var data = _ref2.data;
                 dispatch(userSuccess(data));
               })["catch"](function (e) {

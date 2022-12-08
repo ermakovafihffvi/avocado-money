@@ -19,7 +19,7 @@ export const userError = (err) => ({
 export const userInitiate = () => {
     return async (dispatch) => {
         dispatch(userStart())
-        await axios.get(`http://laravelreact/api/userinfo`)
+        await axios.get(`http://${window.location.hostname}/api/userinfo`)
         .then(({data}) => {
             dispatch(userSuccess(data));
         })

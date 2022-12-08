@@ -13,7 +13,7 @@ export const testSuccess = (data) => ({
 export const testInitiate = () => {
     return async (dispatch) => {
         dispatch(testStart())
-        await axios.get(`http://laravelreact/api/test`)
+        await axios.get(`http://${window.location.hostname}/api/test`)
         .then(({data}) => {
             dispatch(testSuccess(data));
         })
@@ -29,7 +29,7 @@ export const testPostSuccess = (data) => ({
 
 export const testPost = (data) => {
     return async (dispatch) => {
-        await axios.post(`http://laravelreact/api/test/post`, data)
+        await axios.post(`http://${window.location.hostname}/api/test/post`, data)
         .then(({data}) => {
             dispatch(testPostSuccess(data));
         })
@@ -38,7 +38,7 @@ export const testPost = (data) => {
 
 export const testUpdate = (data) => {
     return async (dispatch) => {
-        await axios.post(`http://laravelreact/api/test/update`, data)
+        await axios.post(`http://${window.location.hostname}/api/test/update`, data)
         .then(({data}) => {
             dispatch(testPostSuccess(data));
         })
@@ -47,7 +47,7 @@ export const testUpdate = (data) => {
 
 export const testDelete = (data) => {
     return async (dispatch) => {
-        await axios.post(`http://laravelreact/api/test/delete`, data)
+        await axios.post(`http://${window.location.hostname}/api/test/delete`, data)
         .then(({data}) => {
             dispatch(testPostSuccess(data));
         })

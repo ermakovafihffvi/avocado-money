@@ -19,7 +19,7 @@ export const categoryExpError = (err) => ({
 export const categoryExpInitiate = () => {
     return async (dispatch) => {
         dispatch(categoryExpStart())
-        await axios.get(`http://laravelreact/api/category_exp`)
+        await axios.get(`http://${window.location.hostname}/api/category_exp`)
         .then(({data}) => {
             dispatch(categoryExpSuccess(data));
         })

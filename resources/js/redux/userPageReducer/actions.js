@@ -22,7 +22,7 @@ export const userPostSuccess = (data) => ({
 export const userPageInitiate = (userId) => {
     return async (dispatch) => {
         dispatch(userStart());
-        await axios.get(`http://laravelreact/api/user/` + userId)
+        await axios.get(`http://${window.location.hostname}/api/user/` + userId)
         .then(({data}) => {
             dispatch(userSuccess(data));
         })
@@ -35,9 +35,9 @@ export const userPagePost = (data) => {
     let usreId = data.user_id;
     let url = ``;
     if(data.money_type == "expenses"){
-        url = `http://laravelreact/api/user/expenses/post`;
+        url = `http://${window.location.hostname}/api/user/expenses/post`;
     } else if (data.money_type == "incomes") {
-        url = `http://laravelreact/api/user/income/post`;
+        url = `http://${window.location.hostname}/api/user/income/post`;
     }
 
     return async (dispatch) => {
@@ -53,9 +53,9 @@ export const userPagePost = (data) => {
 export const userPageUpdate = (data) => {
     let url = ``;
     if(data.money_type == "expenses"){
-        url = `http://laravelreact/api/user/expenses/update`;
+        url = `http://${window.location.hostname}/api/user/expenses/update`;
     } else if (data.money_type == "incomes") {
-        url = `http://laravelreact/api/user/income/update`;
+        url = `http://${window.location.hostname}/api/user/income/update`;
     }
 
     return async (dispatch) => {
@@ -70,9 +70,9 @@ export const userPageUpdate = (data) => {
 export const userPageDelete = (data) => {
     let url = ``;
     if(data.money_type == "expenses"){
-        url = `http://laravelreact/api/user/expenses/delete`;
+        url = `http://${window.location.hostname}/api/user/expenses/delete`;
     } else if (data.money_type == "incomes") {
-        url = `http://laravelreact/api/user/income/delete`;
+        url = `http://${window.location.hostname}/api/user/income/delete`;
     }
 
     return async (dispatch) => {

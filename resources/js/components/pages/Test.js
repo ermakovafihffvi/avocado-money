@@ -57,12 +57,6 @@ function Test() {
         //dispatch(testInitiate());
     }, [])
 
-    /*const fetchCategories = async () => {
-        await axios.get(`http://laravelreact/api/category_exp`).then(({data}) => {
-            setCategories(data);
-        });
-    }*/
-
     console.log(testsArr);
     console.log(loading);
     if(loading){
