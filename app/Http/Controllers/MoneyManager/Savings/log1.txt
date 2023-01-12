@@ -1,8 +1,0 @@
-Array
-(
-    [category_id] => 0
-    [desc] => ggg
-    [user_id] => 1
-    [sum] => 4444
-    [money_type] => incomes
-)

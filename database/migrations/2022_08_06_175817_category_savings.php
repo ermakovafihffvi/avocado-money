@@ -18,6 +18,7 @@ class CategorySavings extends Migration
             $table->string('title');
             $table->string('limit');
             $table->string('str_id');
+            $table->unique('str_id');
         });
     }
 

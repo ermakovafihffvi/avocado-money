@@ -17,6 +17,7 @@ export const homeError = (err) => ({
 
 
 export const homeInitiate = () => {
+    console.log("in home reducer");
     return async (dispatch) => {
         dispatch(homeStart())
         await axios.get(`http://${window.location.hostname}/api/home`)

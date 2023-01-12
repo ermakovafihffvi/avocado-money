@@ -52,6 +52,9 @@ function Layout() {
       if((/user\/\d{1,}/.test(document.location.pathname))){
         handleChange(2);
       }
+      if(document.location.pathname == "/admin"){
+        handleChange(3);
+      }
       if(document.location.pathname == "/savings"){
         handleChange(1);
       }
@@ -104,6 +107,8 @@ function Layout() {
                     ))}
 
                   </StyledMenu>
+
+                  <NavLink to={'/admin'}><Tab label="Admin" value="3" onClick={(e) => handleChange(3)}/></NavLink>
 
                 </Tabs>
               </Box>

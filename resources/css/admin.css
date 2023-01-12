@@ -1,0 +1,11 @@
+.saving_buttons_wrapper{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.saving_buttons_tc {
+    /*width: 300px;*/
+}

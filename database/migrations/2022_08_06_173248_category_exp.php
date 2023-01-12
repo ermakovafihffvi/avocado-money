@@ -19,6 +19,7 @@ class CategoryExp extends Migration
             $table->string('limit');
             $table->boolean('isActive');
             $table->string('str_id');
+            $table->unique('str_id');
         });
     }
 

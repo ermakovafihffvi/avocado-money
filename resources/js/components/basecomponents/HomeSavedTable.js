@@ -9,9 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
+import { categoryExpError } from '../../redux/caregoryExpReducer/actions';
 
 function HomeSavedTable(props) {
     let expenses = props.expenses;
+    let savingCatArr = props.categoriesSaving;
 
     return (
         <>
@@ -19,12 +21,13 @@ function HomeSavedTable(props) {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell colSpan={4}>Saved for this month till now</TableCell>
+                            <TableCell colSpan={5}>Saved for this month till now</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>User</TableCell>
-                            <TableCell>Moving</TableCell>
-                            <TableCell>Unexpected</TableCell>
+                            {savingCatArr.map((catеgory) => (
+                                <TableCell>{catеgory.title}</TableCell>
+                            ))}
                             <TableCell>Total</TableCell>
                         </TableRow>
                     </TableHead>
@@ -39,8 +42,11 @@ function HomeSavedTable(props) {
                                         {expenses[key].userName}
                                     </NavLink>
                                 </TableCell>
-                                <TableCell>{expenses[key].moving}</TableCell>
-                                <TableCell>{expenses[key].unexpected}</TableCell>
+
+                                {Object.keys(expenses[key].categories).map((category, index) => (
+                                    <TableCell>{expenses[key].categories[category]}</TableCell>
+                                ))}
+
                                 <TableCell>{expenses[key].remSum}</TableCell>
                             </TableRow>
                         ))}
