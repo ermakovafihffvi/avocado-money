@@ -9,6 +9,7 @@ import NotFound from './NotFound';
 import Test from './pages/Test';
 import Admin from './pages/Admin';
 import '../../css/app.css';
+import Login from './pages/Login';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path={'/test'} element={<Test/>}></Route>
                 <Route path={'/admin'} element={<Admin/>}></Route>
             </Route>
+            <Route path={'/login'} element={<Login/>}></Route>
             <Route path={'*'} element={<NotFound/>}></Route>
         </Routes>
     );

@@ -9,6 +9,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -50,7 +51,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    public function __invoke(Request $request)
+    {
+        return "Welcome to our homepage";
+    }
     public function loginGH() {
         if (Auth::check()) {
             return redirect()->route('home');
@@ -67,5 +71,23 @@ class LoginController extends Controller
 
         }
         return redirect()->route('home');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

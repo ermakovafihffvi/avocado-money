@@ -15,6 +15,7 @@ use App\Http\Controllers\MoneyManager\Savings\SavingsRequests;
 use App\Http\Controllers\MoneyManager\Incomes\IncomeRequests;
 use App\Http\Controllers\MoneyManager\User\UserRequests;
 use App\Http\Controllers\MoneyManager\User\UserToGroup;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -60,4 +61,4 @@ Route::post('admin/confirm_delete_saving', [SavingsRequests::class, "deleteSavin
 
 Route::get('admin', [Admin::class, "index"]);
 
-/*Route::post('login', LoginController::class, 'login');*/
+Route::post('login', LoginController::class, 'login');
