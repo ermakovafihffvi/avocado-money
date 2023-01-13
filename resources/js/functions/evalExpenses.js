@@ -1,28 +1,56 @@
-const evalExpenses = function (categoriesArr, homeArr, categoriesSaving) {
-    let remaining = {};
-    //console.log(homeArr);
-    //console.log("expenses");
-    //console.log(homeArr.expenses.users[1]);
-    for(let i in homeArr.expenses.users){
-        let remSum = homeArr.incomes.users[i].total - homeArr.expenses.users[i].total;
-        //console.log(i);
-        //console.log(homeArr.expenses.users[i].name);
-        remaining[i] = {
-            "userName": homeArr.expenses.users[i].name, 
-            "remSum": remSum,
-            "unexpected": 0,
-            "moving": remSum
-        };
-
-        if(homeArr.expenses.users[i].name == "Vatnik" 
-            && remSum >= categoriesSaving.find(category => category.str_id === "unexpected").limit
-        ){
-            //console.log("in if");
-            remaining[i]["unexpected"] = categoriesSaving.find(category => category.str_id === "unexpected").limit;
-            remaining[i]["moving"] -= categoriesSaving.find(category => category.str_id === "unexpected").limit;
-        }
+class RemainingMoneyManager {
+    constructor(homeArr, categoriesSaving){
+        this.remaining = {};
+        this.categoryArr = {};
+        this.evalExpenses(homeArr, categoriesSaving);
     }
-    return remaining;
+    getRemaining(){
+        return this.remaining;
+    }
+    getCategoryArr() {
+        return this.categoryArr;
+    }
+    evalExpenses(homeArr, categoriesSaving){
+        
+        let remaining = {};
+
+        let additionalArr = {};
+        categoriesSaving.forEach(category => {
+            additionalArr[category.str_id] = {
+                "title": category.title,
+                "str_id": category.str_id,
+                "sum": 0
+            }; //массив в котором будем отсчитывать заполеннность лимита
+        });
+    
+        let remSum = 0;
+        for(let i in homeArr.expenses.users){
+            remSum = homeArr.incomes.users[i].total - homeArr.expenses.users[i].total; //остаток для даннного юзера
+    
+            remaining[i] = {
+                "userName": homeArr.expenses.users[i].name,
+                "remSum": 0,
+                "categories": {} 
+            };
+    
+            categoriesSaving.forEach(category => {
+                if(remSum > (category.limit - additionalArr[category.str_id].sum)){ //если юзер может заполнить категорию до конца
+                    remaining[i]["categories"][category.str_id] = category.limit - additionalArr[category.str_id].sum;
+                    remSum -= (category.limit - additionalArr[category.str_id].sum);
+                    additionalArr[category.str_id].sum = category.limit;
+                } else {
+                    remaining[i]["categories"][category.str_id] = remSum;
+                    additionalArr[category.str_id].sum += remSum;
+                    remSum = 0;
+                }
+                remaining[i]["remSum"] += remaining[i]["categories"][category.str_id];
+            });
+        }
+
+        this.remaining = remaining;
+        this.categoryArr = additionalArr;
+    }
+
 }
 
-export default evalExpenses;
+export default RemainingMoneyManager;

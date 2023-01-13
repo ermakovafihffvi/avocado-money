@@ -72,6 +72,7 @@ class Home extends Controller
 
         foreach($savingCategories as $category){
             $resArr["savings"]["categories"][$category["str_id"]]["title"] = $category["title"];
+            $resArr["savings"]["categories"][$category["str_id"]]["limit"] = $category["limit"];
             foreach($savings as $saving){
                 if($category["id"] == $saving->category_id)
                     $resArr["savings"]["categories"][$category["str_id"]][] = $saving; //объект
@@ -90,7 +91,7 @@ class Home extends Controller
     }
 
     public function getAllSavingsCategories(){
-        return ModelsCategorySavings::select('id', 'title', 'str_id')->get();
+        return ModelsCategorySavings::select('id', 'title', 'str_id', 'limit')->get();
     }
 
     public function getAllExpenses(){

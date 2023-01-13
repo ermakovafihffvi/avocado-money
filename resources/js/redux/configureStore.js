@@ -8,6 +8,7 @@ import { categorySavReducer } from "./categorySavReducer/categoryExpReducer";
 import { categoryExpPageReducer } from "./categoryExpPageReducer/categoryExpPageReducer";
 import { userPageReducer } from "./userPageReducer/userPageReducer";
 import { userReducer } from "./userReducer/userReducer";
+import { adminPageReducer } from "./adminPageReducer/adminPageReducer";
 
 const reducer = combineReducers({
     categoryExp: categoryExpReducer,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
     categoryExpPage: categoryExpPageReducer,
     userPage: userPageReducer,
     userInfo: userReducer,
+    adminPage: adminPageReducer,
     test: testReducer
 })
 

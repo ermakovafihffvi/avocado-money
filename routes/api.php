@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Pages\Category;
 use App\Http\Controllers\Pages\Home;
+use App\Http\Controllers\Pages\Admin;
 use App\Http\Controllers\CategoryExp;
 use App\Http\Controllers\CategorySav;
 use App\Http\Controllers\MoneyManager\Periods;
@@ -53,5 +54,10 @@ Route::post('user/income/delete', [IncomeRequests::class, "deleteIncome"]);
 
 Route::get('user/{userId}/user_to_gr', [UserToGroup::class, "getUsersGroupIds"]);
 Route::get('user/{userId}/user_to_gr/{groupId}', [UserToGroup::class, "isUserInGroup"]);
+
+Route::post('admin/confirm_saving_sum', [SavingsRequests::class, "addSaving"]);
+Route::post('admin/confirm_delete_saving', [SavingsRequests::class, "deleteSaving"]);
+
+Route::get('admin', [Admin::class, "index"]);
 
 /*Route::post('login', LoginController::class, 'login');*/

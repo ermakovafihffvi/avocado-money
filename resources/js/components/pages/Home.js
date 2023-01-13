@@ -8,7 +8,7 @@ import { homeSelector, loadingHomeSelector } from '../../redux/homeReducer/homeS
 import { homeInitiate } from '../../redux/homeReducer/actions';
 import { categorySavSelector, loadingCategorySavSelector } from '../../redux/categorySavReducer/categoryExpSelector';
 import { categorySavInitiate } from '../../redux/categorySavReducer/actions';
-import evalExpenses from '../../functions/evalExpenses';
+import RemainingMoneyManager from '../../functions/evalExpenses';
 
 import HomeExpensedTable from '../basecomponents/HomeExpensedTable';
 import HomeIncomeTable from '../basecomponents/HomeIncomeTable';
@@ -82,13 +82,18 @@ function Home() {
             </>
         );
     } else {
-        console.log(homeData);
-        let expenses = evalExpenses(categoriesArr, homeData, categoriesSaving);
-        console.log(categoriesArr);
+        //console.log(homeData);
+        const moneyManager = new RemainingMoneyManager(homeData, categoriesSaving);
+        let expenses = moneyManager.getRemaining();
+        //console.log(expenses);
+        //console.log(categoriesArr);
         return (
             <>    
                 <div className='userpage-table-block'>
-                    <HomeSavedTable expenses={ expenses }></HomeSavedTable>
+                    <HomeSavedTable 
+                        expenses={ expenses } 
+                        categoriesSaving={ categoriesSaving }
+                    ></HomeSavedTable>
                 </div>
                 
                 <div className='userpage-table-block'>

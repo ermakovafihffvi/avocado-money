@@ -17,6 +17,7 @@ class SavingSource extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('str_id');
+            $table->unique('str_id');
         });
     }
 

@@ -3,36 +3,45 @@
 namespace App\Http\Controllers\MoneyManager\Savings;
 use App\Http\Controllers\Controller;
 use App\Models\Savings as ModelsSavings;
+use App\Models\SavingSource as ModelsSavingSource;
+use App\Models\CategorySavings as ModelsCategorySaving;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class SavingsRequests extends Controller
 {
     public function addSaving(Request $request){
-        file_put_contents(__DIR__."/log1.txt", print_r($request->toArray(), true)); //массив 
-        file_put_contents(__DIR__."/log.txt", print_r(get_class_methods($request), true));
+
         $requestData = $request->toArray();
+        $cat = (new ModelsCategorySaving())->select('id')->where('str_id', $requestData["category"])->get();
+        $source = (new ModelsSavingSource())->select('id')->where('str_id', "saved")->get();
         $saving = new ModelsSavings();
         $saving->created_at = Carbon::now();
-        $saving->desc = $requestData["desc"];
-        $saving->user_id = $requestData["user_id"];
-        $saving->sum= $requestData["sum"];
-
+        $saving->category_id = $cat[0]["id"];
+        $saving->sum = $request["sum"];
+        $saving->source_id = $source[0]["id"];
         $saving->save();
 
         return true;
     }
 
+    /**
+     * пока не изпользуется
+     */
     public function updateSaving(Request $request){
 
         $requestData = $request->toArray();
 
         $saving = ModelsSavings::find($requestData["id"]);
         $saving->created_at = Carbon::now();
-        $saving->desc = $requestData["desc"];
-        $saving->user_id = $requestData["user_id"];
-        $saving->sum= $requestData["sum"];
-
+        $cat = (new ModelsCategorySaving())->select('id')->where('str_id', $requestData["category"])->get();
+        $source = (new ModelsSavingSource())->select('id')->where('str_id', "saved")->get();
+        $saving = new ModelsSavings();
+        $saving->created_at = Carbon::now();
+        $saving->category_id = $cat[0]["id"];
+        $saving->source_id = $source[0]["id"];
+        $saving->sum = $request["sum"];
+    
         $saving->save();
 
         return true;
