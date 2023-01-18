@@ -19,10 +19,9 @@ class DatabaseSeeder extends Seeder
             CategorySavings::class,
             SavingSource::class,
             TestUser::class,
-            TestExpenses::class,
-            TestSavings::class,
-            TestIncome::class,
-            TestUser::class,
+            //TestExpenses::class,
+            //TestSavings::class,
+            //TestIncome::class,
             TestUserGroup::class,
             TestUserToGroup::class
         ]);

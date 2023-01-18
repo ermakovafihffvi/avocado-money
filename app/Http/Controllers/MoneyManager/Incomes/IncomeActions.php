@@ -6,7 +6,7 @@ use App\Models\Income as ModelsIncome;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class IncomeRequests extends Controller
+class IncomeActions extends Controller
 {
     public function addIncome(Request $request){
         //file_put_contents(__DIR__."/log1.txt", print_r($request->toArray(), true)); //массив 

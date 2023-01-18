@@ -14,6 +14,7 @@ import { userPagePost, userPageUpdate, userPageDelete } from '../../redux/userPa
 import AddMoneyModal from "../basecomponents/AddMoneyModal";
 import UserExpensesTable from '../basecomponents/UserExpensesTable';
 import UserIncomeTable from '../basecomponents/UserIncomeTable';
+import Loading from '../Loading';
 
 
 function User() {
@@ -108,7 +109,7 @@ function User() {
     if(loading || Object.keys(userPageArr).length == 0){
         return (
             <>        
-                Loading
+                <Loading/>
             </>
         );
     } else {

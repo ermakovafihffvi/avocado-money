@@ -26,6 +26,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AdminButtonsTable from '../basecomponents/AdminButtonsTable';
 
 import RemainingMoneyManager from '../../functions/evalExpenses';
+import Loading from '../Loading';
 
 function Admin() {
     const dispatch = useDispatch();
@@ -65,7 +66,7 @@ function Admin() {
     if(loadingAdminPage || loadingHomeData || loadingCatSav || homeData.length == 0){
         return (
             <>        
-            Loading
+                <Loading/>
             </>
         );
     } else {
@@ -75,7 +76,7 @@ function Admin() {
             <>   
                 <Typography variant="h5" component="h2">
                     Жмакать кнопки на добавление надо осторожно! Рекомендуется жамакать раз в месяц - 22 числа. 
-                    Перед этим проверить в табличке ниже, что денюжка по данной категории ещё не добавлена.
+                    Перед этим проверить в табличке ниже, что денюжка по данной категории В ЭТОМ МЕСЯЦЕ ещё не добавлена.
                 </Typography>
 
                 <TableContainer component={Paper} style={{marginBottom:"50px"}}>

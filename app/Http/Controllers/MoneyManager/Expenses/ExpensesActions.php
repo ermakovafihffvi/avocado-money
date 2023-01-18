@@ -6,7 +6,7 @@ use App\Models\Expenses as ModelsExpenses;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class ExpensesRequests extends Controller
+class ExpensesActions extends Controller
 {
     public function addExpense(Request $request){
         //file_put_contents(__DIR__."/log1.txt", print_r($request->toArray(), true)); //массив 

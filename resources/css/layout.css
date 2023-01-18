@@ -12,3 +12,8 @@
     justify-content: center;
     color: white;
 }
+
+.header-box{
+    display: flex;
+    justify-content: space-between;
+}

@@ -17,8 +17,8 @@ class TestUser extends Seeder
     {
         $now = Carbon::now();
         DB::table('user')->insert([
-            ['name' => 'Alex', 'email' => 'ff@mail.com', 'password' => '12345', 'created_at' => $now],
-            ['name' => 'Vatnik', 'email' => 'fff@mail.com', 'password' => '12345', 'created_at' => $now]
+            ['name' => 'Alex', 'email' => 'ff@mail.com', 'password' => '$2y$10$Wjmit/sWXnXXwgB6ZSySaOYyLZCX7B5pe7.2fLv.H1YWXbRrbPS3a', 'created_at' => $now],
+            ['name' => 'Plusha', 'email' => 'fff@mail.com', 'password' => '$2y$10$VzoVxqfiCUJR/feDNBZ/DORcsMKjC/41cNONH/1Ra.2ig2OEjJ3bK', 'created_at' => $now]
         ]);
     }
 }

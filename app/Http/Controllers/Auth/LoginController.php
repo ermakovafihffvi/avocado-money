@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -55,7 +57,7 @@ class LoginController extends Controller
     {
         return "Welcome to our homepage";
     }
-    public function loginGH() {
+    /*public function loginGH() {
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -71,23 +73,37 @@ class LoginController extends Controller
 
         }
         return redirect()->route('home');
+    }*/
+
+    public function simpleLogin(LoginRequest $request)
+    {
+        $credential = [
+            'name' => $request['login'],
+            'password' => $request['password']       
+        ];
+        $request->session()->regenerate();
+        //dump(Hash::make($request["password"]));
+        if (Auth::attempt($credential, true)) {
+            //$user = Auth::getProvider()->retrieveByCredentials($credential);
+            //$request->session()->regenerate();
+            //Auth::login($user, true);
+            //return redirect($this->redirectTo);
+
+            return true;
+        }
+
+        return response()->json([
+            'message' => 'Wrong credentials'
+        ], 422);
     }
 
-    public function login(Request $request)
+    public function logout(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
- 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('dashboard');
+        if(Auth::logout()){
+            return true;
+        } else {
+            return false;
         }
- 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
     }
+
 }

@@ -13,12 +13,16 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 
+import Button from '@mui/material/Button';
+
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from '../redux/userReducer/userSelector';
 import { userInitiate } from '../redux/userReducer/actions';
 import { loadingUserSelector} from "../redux/userReducer/userSelector";
+import { logoutInitiate } from '../redux/loginReducer/actions';
 
 import StyledMenu from "./basecomponents/StyledMenu";
+import Loading from './Loading';
 
 
 
@@ -47,6 +51,10 @@ function Layout() {
       }
     };
 
+    const handleLogout = () => {
+      dispatch(logoutInitiate());
+    }
+
     useEffect(()=>{
       dispatch(userInitiate());
       if((/user\/\d{1,}/.test(document.location.pathname))){
@@ -67,7 +75,7 @@ function Layout() {
     if(loading || Object.keys(userInfoArr).length == 0){
       return (
           <>        
-              Loading Layout
+              <Loading/>
           </>
       );
     } else {
@@ -76,7 +84,7 @@ function Layout() {
           <CssBaseline />
           <Container fixed>
             <header className='header'>
-              <Box sx={{ width: '100%' }}>
+              <Box sx={{ width: '100%' }} className='header-box'>
                 <Tabs value={value} aria-label="wrapped label tabs example">
                   <NavLink to={'/'}><Tab label="Home" value="0" onClick={(e) => handleChange(0)}/></NavLink>
                   <NavLink to={'/savings'}><Tab label="Savings" value="1" onClick={(e) => handleChange(1)}/></NavLink>
@@ -110,7 +118,9 @@ function Layout() {
 
                   <NavLink to={'/admin'}><Tab label="Admin" value="3" onClick={(e) => handleChange(3)}/></NavLink>
 
+                  
                 </Tabs>
+                <Button variant="contained" value="logout" onClick={(e) => handleLogout()}>Logout</Button>
               </Box>
             </header>
             <main>

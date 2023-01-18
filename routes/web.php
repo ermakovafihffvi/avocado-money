@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
     return view('reactapp');
 });*/
 
+Route::view('/', 'reactapp');
 Route::view('/{path?}', 'reactapp');
 Route::view('/{path?}/{name?}', 'reactapp'); //надо добавлять такие строчки, если понадобится обрабатывать урлы с большим количеством слешей
