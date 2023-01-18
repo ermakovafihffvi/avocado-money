@@ -7,6 +7,7 @@ import { loadingSavingsSelector } from "../../redux/savingsReducer/savingsSelect
 import SavingTotalTable from '../basecomponents/SavingTotalTable';
 import SavingSavedTable from '../basecomponents/SavingSavedTable';
 import SavingExpensedTable from '../basecomponents/SavingExpensesTable';
+import Loading from '../Loading';
 
 
 function Savings() {
@@ -22,7 +23,7 @@ function Savings() {
     if(loading || savingsArr.length == 0){
         return (
             <>        
-                Loading
+                <Loading/>
             </>
         );
     } else {

@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!--material ui-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -31,7 +32,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
-    <title>React App</title>
+    <title>Avocado Money</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

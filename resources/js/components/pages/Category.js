@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoryExpPageSelector } from '../../redux/categoryExpPageReducer/categoryExpPageSelector';
 import { categoryExpPageInitiate } from '../../redux/categoryExpPageReducer/actions';
 import { loadingCategoryExpPageSelector } from "../../redux/categoryExpPageReducer/categoryExpPageSelector";
+import Loading from '../Loading';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -41,7 +42,7 @@ function Category() {
     if(loading || Object.keys(categoryArr).length == 0){
         return (
             <>        
-                Loading
+                <Loading/>
             </>
         );
     } else {

@@ -13,6 +13,7 @@ import RemainingMoneyManager from '../../functions/evalExpenses';
 import HomeExpensedTable from '../basecomponents/HomeExpensedTable';
 import HomeIncomeTable from '../basecomponents/HomeIncomeTable';
 import HomeSavedTable from '../basecomponents/HomeSavedTable';
+import Loading from '../Loading';
 
 function Home() {
     const dispatch = useDispatch();
@@ -78,15 +79,14 @@ function Home() {
     if(loadingCatExp || loadingCatSav || loadingHomeData || homeData.length == 0 || categoriesSaving == 0){
         return (
             <>        
-            Loading
+                <Loading/>
             </>
         );
     } else {
-        //console.log(homeData);
+
         const moneyManager = new RemainingMoneyManager(homeData, categoriesSaving);
         let expenses = moneyManager.getRemaining();
-        //console.log(expenses);
-        //console.log(categoriesArr);
+
         return (
             <>    
                 <div className='userpage-table-block'>

@@ -9,6 +9,8 @@ import { categoryExpPageReducer } from "./categoryExpPageReducer/categoryExpPage
 import { userPageReducer } from "./userPageReducer/userPageReducer";
 import { userReducer } from "./userReducer/userReducer";
 import { adminPageReducer } from "./adminPageReducer/adminPageReducer";
+import { loginReducer } from "./loginReducer/loginReducer";
+import axios from 'axios';
 
 const reducer = combineReducers({
     categoryExp: categoryExpReducer,
@@ -19,7 +21,32 @@ const reducer = combineReducers({
     userPage: userPageReducer,
     userInfo: userReducer,
     adminPage: adminPageReducer,
+    login: loginReducer,
     test: testReducer
 })
+const checkLogin = store => next => async action => {
+    await axios.post(`http://${window.location.hostname}/api/loginCheck`, {})
+    .then(({data}) => {
+        console.log(data);
+        if(data == 1){
+            return next(action);
+        } else {
+            location.replace(`http://${window.location.hostname}/login`);
+        }
+        
+    })
+    .catch((e) => {
+        location.replace(`http://${window.location.hostname}/login`);
+    });
+}
+let middleware = store => next => action => {
+    return next(action);
+}
 
-export const store = createStore(reducer, applyMiddleware(thunk));
+if(location.href != `http://${window.location.hostname}/login` 
+    && location.href != `http://${window.location.hostname}/api/loginCheck`
+){
+    middleware = checkLogin;
+}
+
+export const store = createStore(reducer, applyMiddleware(thunk, middleware));

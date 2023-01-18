@@ -9,6 +9,9 @@ use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -50,8 +53,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function loginGH() {
+    public function __invoke(Request $request)
+    {
+        return "Welcome to our homepage";
+    }
+    /*public function loginGH() {
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -67,5 +73,37 @@ class LoginController extends Controller
 
         }
         return redirect()->route('home');
+    }*/
+
+    public function simpleLogin(LoginRequest $request)
+    {
+        $credential = [
+            'name' => $request['login'],
+            'password' => $request['password']       
+        ];
+        $request->session()->regenerate();
+        //dump(Hash::make($request["password"]));
+        if (Auth::attempt($credential, true)) {
+            //$user = Auth::getProvider()->retrieveByCredentials($credential);
+            //$request->session()->regenerate();
+            //Auth::login($user, true);
+            //return redirect($this->redirectTo);
+
+            return true;
+        }
+
+        return response()->json([
+            'message' => 'Wrong credentials'
+        ], 422);
     }
+
+    public function logout(Request $request)
+    {
+        if(Auth::logout()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

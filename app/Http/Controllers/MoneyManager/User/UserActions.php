@@ -6,7 +6,7 @@ use App\Models\User as ModelUser;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class UserRequests extends Controller
+class UserActions extends Controller
 {
     public function getBasicUserInfo(){
         return ModelUser::select('id', 'name')->get();

@@ -8,7 +8,7 @@ use App\Models\CategorySavings as ModelsCategorySaving;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class SavingsRequests extends Controller
+class SavingsActions extends Controller
 {
     public function addSaving(Request $request){
 
