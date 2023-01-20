@@ -11,6 +11,11 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Collapse from '@mui/material/Collapse';
+
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -22,6 +27,8 @@ const Item = styled(Paper)(({ theme }) => ({
 function SavingSavedTable(props) {
     let categories = props.categories;
 
+    const [open, setOpen] = React.useState(false);
+
     return (
         <>
             <Typography variant="h3" gutterBottom>Отложенные</Typography>
@@ -30,27 +37,52 @@ function SavingSavedTable(props) {
                     <TableHead>
                         <TableRow>
                             <TableCell>Category</TableCell>
-                            <TableCell>Date</TableCell>
-                            <TableCell>Sum</TableCell>
-                            <TableCell>Source</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {categories.map((category) => (
-                            <>
+                            <React.Fragment>
                                 <TableRow key={"cat_" + category[1].name}>
-                                    <TableCell rowSpan={category[1].details_arr.length + 1}>
+                                    <TableCell>
+                                        <IconButton
+                                            aria-label="expand row"
+                                            size="small"
+                                            onClick={() => setOpen(!open)}
+                                        >
+                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                        </IconButton>
+
                                         {category[1].name}
+
                                     </TableCell>
                                 </TableRow>
-                                {category[1].details_arr.map((row) => (
-                                    <TableRow key={row.id}>
-                                        <TableCell >{row.date}</TableCell>
-                                        <TableCell >{row.sum}</TableCell>
-                                        <TableCell >{row.source}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </>
+                                <TableRow>
+                                    <TableCell>
+                                        <Collapse in={open} timeout="auto" unmountOnExit>
+                                            <Table>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell></TableCell>
+                                                        <TableCell>Date</TableCell>
+                                                        <TableCell>Sum</TableCell>
+                                                        <TableCell>Source</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {category[1].details_arr.map((row) => (
+                                                        <TableRow key={row.id}>
+                                                            <TableCell></TableCell>
+                                                            <TableCell >{row.date}</TableCell>
+                                                            <TableCell >{row.sum}</TableCell>
+                                                            <TableCell >{row.source}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </Collapse>
+                                    </TableCell>
+                                </TableRow>
+                            </React.Fragment>
                         ))}
                     </TableBody>
                 </Table>

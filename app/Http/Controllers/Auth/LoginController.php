@@ -81,9 +81,11 @@ class LoginController extends Controller
             'name' => $request['login'],
             'password' => $request['password']       
         ];
-        $request->session()->regenerate();
+        //$request->session()->regenerate();
+
         //dump(Hash::make($request["password"]));
         if (Auth::attempt($credential, true)) {
+
             //$user = Auth::getProvider()->retrieveByCredentials($credential);
             //$request->session()->regenerate();
             //Auth::login($user, true);

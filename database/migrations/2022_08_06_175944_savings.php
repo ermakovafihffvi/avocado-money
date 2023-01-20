@@ -18,7 +18,7 @@ class Savings extends Migration
             $table->timestamp('created_at');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('source_id');
-            $table->unsignedBigInteger('sum');
+            $table->char('sum');
 
             $table->foreign('category_id')->references('id')->on('category_savings');
             $table->foreign('source_id')->references('id')->on('saving_source');

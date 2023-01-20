@@ -15,6 +15,7 @@ import AddMoneyModal from "../basecomponents/AddMoneyModal";
 import UserExpensesTable from '../basecomponents/UserExpensesTable';
 import UserIncomeTable from '../basecomponents/UserIncomeTable';
 import Loading from '../Loading';
+import { set } from 'lodash';
 
 
 function User() {
@@ -64,19 +65,20 @@ function User() {
             if(categorieID == 0 && dataToUpdate.category_id != null && dataToUpdate.category_id != undefined){
                 catId = dataToUpdate.category_id;
             }
-            if(desc == ""){
+            if(desc == "" && dataToUpdate.desc != null && dataToUpdate.desc != undefined){
                 descStr = dataToUpdate.desc;
             }
-            if(sum == 0){
+            if(sum == 0 && dataToUpdate.sum != null && dataToUpdate.sum != undefined){
                 sumNum = dataToUpdate.sum;
             }
         }
 
-        let resCatId = categorieID ? categorieID : catId;
-        let resDesc = desc ? desc : descStr;
-        let resSum = sum ? sum : sumNum;
+        let resCatId = catId ? catId : categorieID;
+        let resDesc = descStr ? descStr : desc;
+        let resSum = sumNum ? sumNum : sum;
         //console.log({"id": id, "category_id": resCatId, "desc": resDesc, "user_id": params.userId, "sum": resSum, "money_type": moneyType});
         updateOpenState();
+        setDataToUpdate({}); setCat(0); setDesc(""); setSum(0);
         setPop((prevState) => {return !prevState});
         dispatch(userPageUpdate({"id": id, "category_id": resCatId, "desc": resDesc, "user_id": params.userId, "sum": resSum, "money_type": moneyType}));
     }
@@ -85,6 +87,7 @@ function User() {
         e.preventDefault();
         //console.log({"category_id": categorieID, "desc": desc, "user_id": params.userId, "sum": sum, "money_type": moneyType});
         updateOpenState();
+        setCat(0); setDesc(""); setSum(0);
         setPop((prevState) => {return !prevState});
         dispatch(userPagePost({"category_id": categorieID, "desc": desc, "user_id": params.userId, "sum": sum, "money_type": moneyType}));
     }

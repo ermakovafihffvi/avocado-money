@@ -27,7 +27,6 @@ const reducer = combineReducers({
 const checkLogin = store => next => async action => {
     await axios.post(`http://${window.location.hostname}/api/loginCheck`, {})
     .then(({data}) => {
-        console.log(data);
         if(data == 1){
             return next(action);
         } else {
