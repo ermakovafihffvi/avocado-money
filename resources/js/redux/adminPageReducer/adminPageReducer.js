@@ -9,6 +9,8 @@ const initialState = {
 export const adminPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.ADMIN_PAGE_START:
+        case types.ADMIN_PAGE_CONFIRM_SAV_SUM_START:
+        case types.ADMIN_PAGE_CONFIRM_DEL_SAV_START:
             return {
                 ...state,
                 loading: true
@@ -24,12 +26,6 @@ export const adminPageReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 loading: false
-            }
-        case types.ADMIN_PAGE_CONFIRM_SAV_SUM_START:
-        case types.ADMIN_PAGE_CONFIRM_DEL_SAV_START:
-            return {
-                ...state,
-                loading: true
             }
         case types.ADMIN_PAGE_CONFIRM_SAV_SUM_SUCCESS:
         case types.ADMIN_PAGE_CONFIRM_DEL_SAV_SUCCESS:

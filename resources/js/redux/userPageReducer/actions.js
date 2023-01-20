@@ -41,6 +41,7 @@ export const userPagePost = (data) => {
     }
 
     return async (dispatch) => {
+        dispatch(userStart());
         await axios.post(url, data)
         .then(({data}) => {
             //console.log(data);
@@ -59,6 +60,7 @@ export const userPageUpdate = (data) => {
     }
 
     return async (dispatch) => {
+        dispatch(userStart());
         await axios.post(url, data)
         .then(({data}) => {
             dispatch(userPostSuccess());
@@ -76,6 +78,7 @@ export const userPageDelete = (data) => {
     }
 
     return async (dispatch) => {
+        dispatch(userStart());
         await axios.post(url, data)
         .then(({data}) => {
             dispatch(userPostSuccess());

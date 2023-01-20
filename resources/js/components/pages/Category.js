@@ -37,8 +37,6 @@ function Category() {
         dispatch(categoryExpPageInitiate(params.name));
     }, [])
 
-    console.log(categoryArr);
-    console.log(loading);
     if(loading || Object.keys(categoryArr).length == 0){
         return (
             <>        

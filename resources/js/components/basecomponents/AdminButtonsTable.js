@@ -16,7 +16,7 @@ import ChangeSavingSumModal from './ChangeSavingSumModal';
 function AdminButtonsTable(props) {
 
     let savingsArr = props.expenses;
-console.log(savingsArr);
+
     const [rowStrId, setRowStrID] = useState(0);
     const [open, setOpen] = useState(false);
     const updateOpenState = () => {

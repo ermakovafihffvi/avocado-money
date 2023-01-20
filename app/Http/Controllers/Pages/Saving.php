@@ -39,6 +39,7 @@ class Saving extends Controller
                         "source" => $saving->title
                     ];
                     $resArr["total"][$category["str_id"]]["sum"] += $saving->sum;
+                    $resArr["total"][$category["str_id"]]["sum"] = round($resArr["total"][$category["str_id"]]["sum"], 2);
                 }
             }
         }
@@ -50,6 +51,7 @@ class Saving extends Controller
             $resArr["expenses"][] = $exp; //$exp - Объект
             
             $resArr["total"][$exp->str_id]["sum"] -= $exp->sum;
+            $resArr["total"][$exp->str_id]["sum"] = round($resArr["total"][$exp->str_id]["sum"], 2);
         }
 
 

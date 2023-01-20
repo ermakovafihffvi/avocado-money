@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
             //TestSavings::class,
             //TestIncome::class,
             TestUserGroup::class,
-            TestUserToGroup::class
+            TestUserToGroup::class,
+            Savings::class,
+            SavingsExp::class
         ]);
     }
 }
