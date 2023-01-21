@@ -16,18 +16,58 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+function Row (props) {
+    let category = props.category;
+    const [open, setOpen] = React.useState(false);
+    return (
+        <React.Fragment>
+            <TableRow key={"cat_" + category[1].name}>
+                <TableCell>
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+
+                    {category[1].name}
+
+                </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                    <TableCell>Date</TableCell>
+                                    <TableCell>Sum</TableCell>
+                                    <TableCell>Source</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {category[1].details_arr.map((row) => (
+                                    <TableRow key={row.id}>
+                                        <TableCell></TableCell>
+                                        <TableCell >{row.date}</TableCell>
+                                        <TableCell >{row.sum}</TableCell>
+                                        <TableCell >{row.source}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </React.Fragment>
+    );
+
+}
 
 function SavingSavedTable(props) {
     let categories = props.categories;
-
-    const [open, setOpen] = React.useState(false);
 
     return (
         <>
@@ -41,48 +81,9 @@ function SavingSavedTable(props) {
                     </TableHead>
                     <TableBody>
                         {categories.map((category) => (
-                            <React.Fragment>
-                                <TableRow key={"cat_" + category[1].name}>
-                                    <TableCell>
-                                        <IconButton
-                                            aria-label="expand row"
-                                            size="small"
-                                            onClick={() => setOpen(!open)}
-                                        >
-                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                        </IconButton>
-
-                                        {category[1].name}
-
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Collapse in={open} timeout="auto" unmountOnExit>
-                                            <Table>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell></TableCell>
-                                                        <TableCell>Date</TableCell>
-                                                        <TableCell>Sum</TableCell>
-                                                        <TableCell>Source</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {category[1].details_arr.map((row) => (
-                                                        <TableRow key={row.id}>
-                                                            <TableCell></TableCell>
-                                                            <TableCell >{row.date}</TableCell>
-                                                            <TableCell >{row.sum}</TableCell>
-                                                            <TableCell >{row.source}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </Collapse>
-                                    </TableCell>
-                                </TableRow>
-                            </React.Fragment>
+                            <Row 
+                                category={ category } 
+                            ></Row>
                         ))}
                     </TableBody>
                 </Table>
