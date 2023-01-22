@@ -9,3 +9,23 @@
 .saving_buttons_tc {
     /*width: 300px;*/
 }
+
+.admin-box{
+    margin-top: 50px;
+}
+
+.add-additional-title{
+    margin-bottom: 20px;
+}
+
+.sum-and-confirm-box{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.svg-box{
+    margin-left: 20px;
+    text-align: center;
+}

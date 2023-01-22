@@ -16,6 +16,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
 
+import DeleteIcon from '@mui/icons-material/Delete';
+
 function Row (props) {
     let category = props.category;
     const [open, setOpen] = React.useState(false);
@@ -45,6 +47,7 @@ function Row (props) {
                                     <TableCell>Date</TableCell>
                                     <TableCell>Sum</TableCell>
                                     <TableCell>Source</TableCell>
+                                    <TableCell></TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -54,6 +57,11 @@ function Row (props) {
                                         <TableCell >{row.date}</TableCell>
                                         <TableCell >{row.sum}</TableCell>
                                         <TableCell >{row.source}</TableCell>
+                                        <TableCell>
+                                            <IconButton aria-label="delete" size="large" onClick={(e)=>{props.handleDelete(e, row.id)}}>
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -83,13 +91,14 @@ function SavingSavedTable(props) {
                         {categories.map((category) => (
                             <Row 
                                 category={ category } 
+                                handleDelete={ props.handleDelete }
                             ></Row>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
         </>
-    )
+    );
 }
 
 export default SavingSavedTable;

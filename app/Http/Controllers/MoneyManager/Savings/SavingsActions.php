@@ -13,13 +13,19 @@ class SavingsActions extends Controller
     public function addSaving(Request $request){
 
         $requestData = $request->toArray();
-        $cat = (new ModelsCategorySaving())->select('id')->where('str_id', $requestData["category"])->get();
-        $source = (new ModelsSavingSource())->select('id')->where('str_id', "saved")->get();
         $saving = new ModelsSavings();
+
+        $cat = (new ModelsCategorySaving())->select('id')->where('str_id', $requestData["category"])->get();
+        if(!isset($request["source"])){
+            $source = (new ModelsSavingSource())->select('id')->where('str_id', "saved")->get();
+        } else {
+            $source = (new ModelsSavingSource())->select('id')->where('str_id', $request["source"])->get();
+        }
+        $saving->source_id = $source[0]["id"];
         $saving->created_at = Carbon::now();
         $saving->category_id = $cat[0]["id"];
         $saving->sum = $request["sum"];
-        $saving->source_id = $source[0]["id"];
+
         $saving->save();
 
         return true;

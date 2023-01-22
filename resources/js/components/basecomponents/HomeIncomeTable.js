@@ -25,7 +25,7 @@ function HomeIncomeTable(props) {
                     <TableBody>
                         {Object.keys(homeData.incomes.users).map((key) => (
                             <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={"user_" + key}
                             >
                                 <TableCell component="th" scope="row">
                                     <NavLink to={`/user/${key}`}>

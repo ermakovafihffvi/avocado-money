@@ -40,63 +40,63 @@ class SavingsExp extends Seeder
                 'user_id' => 1, 
                 'sum' => 15539, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "06", "30"),
+                'created_at' => Carbon::createFromDate("2022", "06", "30"),
                 'desc' => 'Ящички, перфоратор, и прочее'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 5655, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "06", "30"),
+                'created_at' => Carbon::createFromDate("2022", "06", "30"),
                 'desc' => 'Стул'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 19320, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "06", "30"),
+                'created_at' => Carbon::createFromDate("2022", "06", "30"),
                 'desc' => 'Ушко'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 11000, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "08", "11"),
+                'created_at' => Carbon::createFromDate("2022", "08", "11"),
                 'desc' => 'монитор'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 10000, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "09", "02"),
+                'created_at' => Carbon::createFromDate("2022", "09", "02"),
                 'desc' => 'монитор'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 25280, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "11", "14"),
+                'created_at' => Carbon::createFromDate("2022", "11", "14"),
                 'desc' => 'Диван1'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 25000, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "11", "26"),
+                'created_at' => Carbon::createFromDate("2022", "11", "26"),
                 'desc' => 'Диван2'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 8221, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "11", "19"),
+                'created_at' => Carbon::createFromDate("2022", "11", "19"),
                 'desc' => 'Комод'
             ],
             [
                 'user_id' => 1, 
                 'sum' => 3277, 
                 'category_id' => $this->catBigExp, 
-                'created_at' => Carbon::createFromDate("2020", "11", "22"),
+                'created_at' => Carbon::createFromDate("2022", "11", "22"),
                 'desc' => 'таблетки'
             ],
         ]);

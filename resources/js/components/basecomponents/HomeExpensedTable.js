@@ -33,7 +33,7 @@ function HomeExpensedTable(props) {
                         {categoriesArr.map((category) => (
                             (category.str_id != "moving" && category.str_id != "unexpected" && category.str_id != "bigexpenses" && category.isActive) ? (
                                 <TableRow
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={category.id}
                                 >
                                     <TableCell component="th" scope="row">
                                         <NavLink to={`/category/${category.str_id}`}>{category.title}</NavLink>

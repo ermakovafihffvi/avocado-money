@@ -10,6 +10,8 @@ import { homeSelector, loadingHomeSelector } from '../../redux/homeReducer/homeS
 import { homeInitiate } from '../../redux/homeReducer/actions';
 import { categorySavSelector, loadingCategorySavSelector } from '../../redux/categorySavReducer/categoryExpSelector';
 import { categorySavInitiate } from '../../redux/categorySavReducer/actions';
+import { sourceSavSelector, loadingSourceSavSelector } from '../../redux/sourceSavReducer/sourceSavSelector';
+import { sourceSavInitiate } from '../../redux/sourceSavReducer/actions';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -20,22 +22,26 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import SvgIcon from '@mui/material/SvgIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import AdminButtonsTable from '../basecomponents/AdminButtonsTable';
 
 import RemainingMoneyManager from '../../functions/evalExpenses';
 import Loading from '../Loading';
+import AdminTableSavingsAny from '../basecomponents/AdminTableSavingsAny';
 
 function Admin() {
     const dispatch = useDispatch();
 
     const homeData = useSelector(homeSelector);
-    const categoriesSaving = useSelector(categorySavSelector);
-
     const loadingHomeData = useSelector(loadingHomeSelector);
+
+    const categoriesSaving = useSelector(categorySavSelector);
     const loadingCatSav = useSelector(loadingCategorySavSelector);
+
+    const sourceSaving = useSelector(sourceSavSelector);
+    const loadingSourceSav = useSelector(loadingSourceSavSelector);
 
     const adminPageInfo = useSelector(adminPageSelector);
     const loadingAdminPage = useSelector(loadingAdminPageSelector);
@@ -46,6 +52,7 @@ function Admin() {
         dispatch(adminPageInitiate());
         dispatch(homeInitiate());
         dispatch(categorySavInitiate());
+        dispatch(sourceSavInitiate());
     }, [reload])
 
     function handleConfirm(category, sum){
@@ -63,7 +70,7 @@ function Admin() {
         setReload(prevState => {return !prevState});
     }
 
-    if(loadingAdminPage || loadingHomeData || loadingCatSav || homeData.length == 0){
+    if(loadingAdminPage || loadingHomeData || loadingCatSav || loadingSourceSav || homeData.length == 0){
         return (
             <>        
                 <Loading/>
@@ -72,6 +79,7 @@ function Admin() {
     } else {
         const moneyManager = new RemainingMoneyManager(homeData, categoriesSaving);
         let moneySaved = moneyManager.getCategoryArr();
+
         return (
             <>   
                 <Typography variant="h5" component="h2">
@@ -114,6 +122,15 @@ function Admin() {
                         handleConfirm={ handleConfirm }
                     ></AdminButtonsTable>
                 </div>
+
+                <div className="admin-box">
+                    <AdminTableSavingsAny
+                        categoriesSaving={ categoriesSaving }
+                        sourceSaving={ sourceSaving }
+                    ></AdminTableSavingsAny>
+                    
+                </div>
+
             </>
         );
     }

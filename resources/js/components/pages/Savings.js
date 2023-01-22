@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { savingsSelector } from '../../redux/savingsReducer/savingsSelector';
 import { savingsInitiate } from '../../redux/savingsReducer/actions';
 import { loadingSavingsSelector } from "../../redux/savingsReducer/savingsSelector";
+
+import { adminPageConfirmDeleting } from '../../redux/adminPageReducer/actions';
+import { loadingAdminPageSelector } from "../../redux/adminPageReducer/adminPageSelector";
+
 import SavingTotalTable from '../basecomponents/SavingTotalTable';
 import SavingSavedTable from '../basecomponents/SavingSavedTable';
 import SavingExpensedTable from '../basecomponents/SavingExpensesTable';
@@ -16,11 +20,22 @@ function Savings() {
     const savingsArr = useSelector(savingsSelector);
     const loading = useSelector(loadingSavingsSelector);
 
+    const loadingAdminPage = useSelector(loadingAdminPageSelector);
+
+    const [reload, setReload] = useState(false);
+
     useEffect(()=>{
         dispatch(savingsInitiate());
-    }, [])
+    }, [reload])
 
-    if(loading || savingsArr.length == 0){
+    const handleDelete = (e, id) => {
+        dispatch(adminPageConfirmDeleting({
+            "id": id,
+        }));
+        setReload(prevState => {return !prevState});
+    }
+
+    if(loading || loadingAdminPage || savingsArr.length == 0){
         return (
             <>        
                 <Loading/>
@@ -37,7 +52,10 @@ function Savings() {
                 <SavingTotalTable totalCategories={ totalCategories }></SavingTotalTable>
             </div>
             <div className='userpage-table-block'>
-                <SavingSavedTable categories={ categories }></SavingSavedTable>
+                <SavingSavedTable 
+                    categories={ categories }
+                    handleDelete={ handleDelete }
+                ></SavingSavedTable>
             </div>
             <div className='userpage-table-block'>
                 <SavingExpensedTable savingsArr={ savingsArr }></SavingExpensedTable>

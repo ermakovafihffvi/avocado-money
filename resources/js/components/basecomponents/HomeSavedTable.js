@@ -26,7 +26,7 @@ function HomeSavedTable(props) {
                         <TableRow>
                             <TableCell>User</TableCell>
                             {savingCatArr.map((catеgory) => (
-                                <TableCell>{catеgory.title}</TableCell>
+                                <TableCell key={"category_" + catеgory.id}>{catеgory.title}</TableCell>
                             ))}
                             <TableCell>Total</TableCell>
                         </TableRow>
@@ -34,7 +34,7 @@ function HomeSavedTable(props) {
                     <TableBody>
                         {Object.keys(expenses).map((key) => (
                             <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={"expenses_" + key}
                             >
                                 <TableCell component="th" scope="row">
                         

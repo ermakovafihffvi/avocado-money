@@ -11,12 +11,14 @@ import { userReducer } from "./userReducer/userReducer";
 import { adminPageReducer } from "./adminPageReducer/adminPageReducer";
 import { loginReducer } from "./loginReducer/loginReducer";
 import axios from 'axios';
+import { sourceSavReducer } from "./sourceSavReducer/sourceSavReducer";
 
 const reducer = combineReducers({
     categoryExp: categoryExpReducer,
     savings: savingsReducer,
     home: homeReducer,
     categorySav: categorySavReducer,
+    sourceSav: sourceSavReducer,
     categoryExpPage: categoryExpPageReducer,
     userPage: userPageReducer,
     userInfo: userReducer,
@@ -42,10 +44,10 @@ let middleware = store => next => action => {
     return next(action);
 }
 
-if(location.href != `http://${window.location.hostname}/login` 
+/*if(location.href != `http://${window.location.hostname}/login` 
     && location.href != `http://${window.location.hostname}/api/loginCheck`
 ){
     middleware = checkLogin;
-}
+}*/
 
 export const store = createStore(reducer, applyMiddleware(thunk, middleware));

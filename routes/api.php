@@ -5,6 +5,7 @@ use App\Http\Controllers\Pages\Home;
 use App\Http\Controllers\Pages\Admin;
 use App\Http\Controllers\CategoryExp;
 use App\Http\Controllers\CategorySav;
+use App\Http\Controllers\SourceSav;
 use App\Http\Controllers\MoneyManager\Periods;
 use App\Http\Controllers\Pages\Saving;
 use App\Http\Controllers\Pages\User;
@@ -35,6 +36,7 @@ use App\Http\Controllers\Auth\AuthController;
 
 Route::resource('category_exp', CategoryExp::class);
 Route::resource('category_sav', CategorySav::class);
+Route::resource('source_sav', SourceSav::class);
 Route::get('userinfo', [UserActions::class, "getBasicUserInfo"]);
 //Route::resource('test', Periods::class);
 
