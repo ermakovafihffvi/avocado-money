@@ -66,6 +66,7 @@ class Saving extends Controller
         return DB::table('savings')
             ->join('saving_source', 'savings.source_id', '=', 'saving_source.id')
             ->select('savings.*', 'saving_source.title', 'saving_source.str_id')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
