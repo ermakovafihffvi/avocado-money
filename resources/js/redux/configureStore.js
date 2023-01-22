@@ -44,10 +44,10 @@ let middleware = store => next => action => {
     return next(action);
 }
 
-/*if(location.href != `http://${window.location.hostname}/login` 
+if(location.href != `http://${window.location.hostname}/login` 
     && location.href != `http://${window.location.hostname}/api/loginCheck`
 ){
     middleware = checkLogin;
-}*/
+}
 
 export const store = createStore(reducer, applyMiddleware(thunk, middleware));
