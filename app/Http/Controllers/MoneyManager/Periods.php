@@ -31,7 +31,7 @@ class Periods
     public function getPeriods()
     {
         $now = Carbon::now();
-        return [
+        $arr = [
             "month_from_now" => [
                 "start_date" => Carbon::now()->subMonth(),
                 "end_date" => Carbon::now()
@@ -40,15 +40,23 @@ class Periods
                 "start_date" => $this->globalStartDate, 
                 "end_date" => Carbon::now()
             ],
-            "month_22" => [
-                "start_date" => Carbon::createFromDate($now->year, $now->month - 1, "22"),
-                "end_date" => Carbon::createFromDate($now->year, $now->month, "22"),
-            ],
             "custom_period" => [
                 "start_date" => $this->customStart,
                 "end_date" => $this->customEnd
             ],
         ];
+        if($now->day <= 22){
+            $arr["month_22"] = [
+                "start_date" => Carbon::createFromDate($now->year, $now->month - 1, "22"),
+                "end_date" => Carbon::createFromDate($now->year, $now->month, "22"),
+            ];
+        } else {
+            $arr["month_22"] = [
+                "start_date" => Carbon::createFromDate($now->year, $now->month, "22"),
+                "end_date" => Carbon::createFromDate($now->year, $now->month + 1, "22"),
+            ];
+        }
+        return $arr;
     }
 
     public function setGlobalStartDate($startDate)
