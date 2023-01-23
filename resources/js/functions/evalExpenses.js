@@ -32,9 +32,11 @@ class RemainingMoneyManager {
                 "remSum": 0,
                 "categories": {} 
             };
+            console.log(remaining);
     
             categoriesSaving.forEach(category => {
-                if(remSum > (category.limit - additionalArr[category.str_id].sum)){ //если юзер может заполнить категорию до конца
+
+                if((remSum > (category.limit - additionalArr[category.str_id].sum)) && category.limit != 0){ //если юзер может заполнить категорию до конца
                     remaining[i]["categories"][category.str_id] = category.limit - additionalArr[category.str_id].sum;
                     remSum -= (category.limit - additionalArr[category.str_id].sum);
                     additionalArr[category.str_id].sum = category.limit;
@@ -44,9 +46,10 @@ class RemainingMoneyManager {
                     remSum = 0;
                 }
                 remaining[i]["remSum"] += remaining[i]["categories"][category.str_id];
+
             });
         }
-
+console.log(remaining);
         this.remaining = remaining;
         this.categoryArr = additionalArr;
     }
