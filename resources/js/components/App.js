@@ -16,10 +16,10 @@ import createCache from '@emotion/cache';
 import { CacheProvider, css } from '@emotion/react' 
 
 function App() {
-    //const nonce = new Buffer(uuidv4()).toString('base64');
+    const nonce = new Buffer(uuidv4()).toString('base64');
     const cache = createCache({
         key: 'my-prefix-key',
-        nonce: 'MjRhNGM5OTgtMDExOS00MThlLWE2NzctZDA4MzhiYjM5OTI2',
+        nonce: nonce,
         prepend: true,
       });
 
