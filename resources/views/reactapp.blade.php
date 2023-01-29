@@ -18,6 +18,7 @@
 
     <link rel="apple-touch-icon" href="/mobile-icons/avocado57.png" />
     <link rel="apple-touch-icon-precomposed" href="/mobile-icons/avocado57.png" />
+    <link rel="shortcut icon" href="/mobile-icons/avocado57.png"/>
 
     <!--
       manifest.json provides metadata used when your web app is installed on a
