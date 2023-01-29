@@ -48,7 +48,9 @@ class Home extends Controller
                 foreach($expenses as $expense){
                     if(($expense["category_id"] == $category["id"]) && ($user["id"] == $expense["user_id"])){
                         $resArr["expenses"]["users"][$user["id"]]["categories"][$category["str_id"]][] = $expense;
-                        $resArr["expenses"]["users"][$user["id"]]["total"] += $expense["sum"];
+                        if($category["str_id"] != "moving" && $category["str_id"] != "unexpected" && $category["str_id"] != "bigexpenses"){
+                            $resArr["expenses"]["users"][$user["id"]]["total"] += $expense["sum"];   
+                        }
                         $resArr["expenses"]["common"][$category["str_id"]] += $expense["sum"];
                         $resArr["expenses"]["total"] += $expense["sum"];
                     }

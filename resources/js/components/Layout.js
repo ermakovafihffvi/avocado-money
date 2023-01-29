@@ -28,6 +28,29 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import Menu from '@mui/material/Menu';
 
 
+function NameLabel (props) {
+  let name = "";
+  if((/user\/\d{1,}/.test(document.location.pathname))){
+    let arr = document.location.pathname.split("/");
+    let curUserId = arr[2];
+    props.userInfoArr.forEach(element => {
+      if(element.id == curUserId){
+        name = element.name;
+      }
+    });
+    return (
+      <div style={{ display: "flex", alignItems: "center",  color: "#0d6efd"}}>
+        <Typography variant="h6">{name} page</Typography>
+      </div>
+    );
+  } else {
+    return (
+      <>
+      </>
+    );
+  }
+}
+
 function Layout() {
     const dispatch = useDispatch();
     const userInfoArr = useSelector(userSelector);
@@ -124,6 +147,8 @@ function Layout() {
                       </React.Fragment>
                     )}
                   </PopupState>
+
+                  <NameLabel userInfoArr={userInfoArr}></NameLabel>
                 </Box>
               </header>
               <main>
@@ -177,6 +202,7 @@ function Layout() {
   
                     
                   </Tabs>
+                  <NameLabel userInfoArr={userInfoArr}></NameLabel>
                   <Button variant="contained" value="logout" onClick={(e) => handleLogout()}>Logout</Button>
                 </Box>
               </header>

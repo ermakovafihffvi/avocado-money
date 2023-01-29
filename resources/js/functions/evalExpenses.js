@@ -25,14 +25,14 @@ class RemainingMoneyManager {
     
         let remSum = 0;
         for(let i in homeArr.expenses.users){
-            remSum = homeArr.incomes.users[i].total - homeArr.expenses.users[i].total; //остаток для даннного юзера
+            remSum = homeArr.incomes.users[i].total - homeArr.expenses.users[i].total; //остаток для даннного юзера без учёта трат на особые категории
     
             remaining[i] = {
                 "userName": homeArr.expenses.users[i].name,
                 "remSum": 0,
                 "categories": {} 
             };
-            console.log(remaining);
+
     
             categoriesSaving.forEach(category => {
 
@@ -49,7 +49,7 @@ class RemainingMoneyManager {
 
             });
         }
-console.log(remaining);
+
         this.remaining = remaining;
         this.categoryArr = additionalArr;
     }

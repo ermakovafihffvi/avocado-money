@@ -27,6 +27,7 @@ function User() {
     const [pop, setPop] = useState(false); 
 
     let totalExpenses = 0;
+    let totalExpensesFull = 0;
 
     const [categorieID, setCat] = useState(0);
     const [desc, setDesc] = useState('');
@@ -101,7 +102,10 @@ function User() {
 
     const countTotalExp = () => {
         for(let category in userPageArr.expenses){
-            totalExpenses += userPageArr.expenses[category].total;
+            if(category != "unexpected" && category != "moving" && category != "bigexpenses"){
+                totalExpenses += userPageArr.expenses[category].total;    
+            }
+            totalExpensesFull += userPageArr.expenses[category].total;
         }
     }
 
@@ -137,6 +141,7 @@ function User() {
                     ></UserExpensesTable>
                     <div className='userpage-buttons-block'>
                         <Typography variant="h4" gutterBottom>Expenses total: {totalExpenses}</Typography>
+                        <Typography variant="h4" gutterBottom>Full expenses: {totalExpensesFull}</Typography>
                         <Button onClick={() => {setOpen(true); setMoneyType("expenses")}} variant="contained" size="large">Add expense</Button>
                         <AddMoneyModal 
                             open={ open } 

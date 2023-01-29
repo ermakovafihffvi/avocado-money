@@ -47,7 +47,7 @@ function HomeSavedTable(props) {
                                     <TableCell>{expenses[key].categories[category]}</TableCell>
                                 ))}
 
-                                <TableCell>{expenses[key].remSum}</TableCell>
+                                <TableCell>{expenses[key].remSum > 0 ? expenses[key].remSum : 0}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
