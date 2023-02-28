@@ -47,12 +47,12 @@ class Periods
         ];
         if($now->day <= 22){
             $arr["month_22"] = [
-                "start_date" => Carbon::createFromDate($now->year, $now->month - 1, "22"),
+                "start_date" => Carbon::createFromDate($now->year, $now->month - 1, "23"),
                 "end_date" => Carbon::createFromDate($now->year, $now->month, "23"),
             ];
         } else {
             $arr["month_22"] = [
-                "start_date" => Carbon::createFromDate($now->year, $now->month, "22"),
+                "start_date" => Carbon::createFromDate($now->year, $now->month, "23"),
                 "end_date" => Carbon::createFromDate($now->year, $now->month + 1, "23"),
             ];
         }
