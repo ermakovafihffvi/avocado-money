@@ -103,7 +103,7 @@ class Home extends Controller
         return ModelsExpenses::select('*')
             ->where('created_at', ">", $startDate)
             ->where('created_at', "<", $endDate)
-            ->get(); //добавить условие на даты
+            ->get();
     }
 
     public function getAllSavings(){

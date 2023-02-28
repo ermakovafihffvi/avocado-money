@@ -63,7 +63,7 @@ class User extends Controller
         ->select('expenses.*', 'category_exp.str_id', 'category_exp.title')
         ->where('user.id', '=', $userId)
         ->where('expenses.created_at', ">", $startDate)
-        ->where('expenses.created_at', "=<", $endDate)
+        ->where('expenses.created_at', "<", $endDate)
         ->get();
     }
 
@@ -76,7 +76,7 @@ class User extends Controller
         ->select('income.*', 'user.name')
         ->where('user.id', '=', $userId)
         ->where('income.created_at', ">", $startDate)
-        ->where('income.created_at', "=<", $endDate)
+        ->where('income.created_at', "<", $endDate)
         ->get();
     }
 
