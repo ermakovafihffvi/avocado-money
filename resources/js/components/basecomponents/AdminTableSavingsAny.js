@@ -49,6 +49,12 @@ function AdminTableSavingsAny(props) {
         .then(({data}) => {
             setLoading(false);
             setSuccess(true);
+            setTimeout(() => {
+                setCat(0);
+                setSum(0);
+                setSource(0);
+                setSuccess(false);
+            }, 5000);
         }).catch((e) => {setLoading(false); setError(true)});
 
     }
@@ -90,12 +96,14 @@ function AdminTableSavingsAny(props) {
                     label="Category"
                     type="category_id" onChange={(e) => handleInput('category_id', e)}
                     defaultValue="Выберите категорию"
+                    value={cat}
                 >
                     {categoriesSaving.map((category) => (
                         <MenuItem value={category.str_id}>
                             {category.title}
                         </MenuItem>
                     ))}
+                    <MenuItem value='0'>Выберите категорию</MenuItem>
                 </Select>
 
                 <InputLabel id="demo-simple-select-helper-label">Source</InputLabel>
@@ -105,18 +113,21 @@ function AdminTableSavingsAny(props) {
                     label="Source"
                     type="source_id" onChange={(e) => handleInput('source_id', e)}
                     defaultValue="Выберите категорию"
+                    value={source}
                 >
                     {sourceSaving.map((source) => (
                         <MenuItem value={source.str_id}>
                             {source.title}
                         </MenuItem>
                     ))}
+                    <MenuItem value='0'>Выберите категорию</MenuItem>
                 </Select>
 
                 <div className='sum-and-confirm-box'>
                     <TextField
                         id="outlined-multiline-flexible" className=''
                         label="Sum"
+                        value={sum}
                         type="desc" onChange={(e) => handleInput("sum", e)}
                     />
                     <Button
