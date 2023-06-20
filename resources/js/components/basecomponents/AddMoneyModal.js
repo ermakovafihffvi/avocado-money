@@ -11,6 +11,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 
+import { validateSumMoney } from '../../functions/sumMoneyValidation';
+import { validateDescriptionMoney } from '../../functions/descriptionMoneyValidation';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -24,6 +27,9 @@ const style = {
 };
 
 export default function AddMoneyModal(props) {
+
+    const [errorsText, setErrorsText] = useState(false);
+    const [errorsSum, setErrorsSum] = useState(false);
 
     let text = "";
     if(props.type == "expenses"){
@@ -41,9 +47,45 @@ export default function AddMoneyModal(props) {
 
     useEffect(()=>{
         if(props.open == 0){
-            props.setDataToUpdate({})
+            setErrorsText(false);
+            setErrorsSum(false);
+            props.setDataToUpdate({});
         }
     }, [props.open])
+
+    function handleText(e){
+        let validationPassed = validateDescriptionMoney(e.target.value);
+        if(!validationPassed){
+            setErrorsText(true);
+        } else {
+            setErrorsText(false);
+            props.handleInput('desc',e);
+        }
+    }
+
+    function handleSum(e){
+        let validationPassed = validateSumMoney(e.target.value);
+        if(!validationPassed){
+            setErrorsSum(true);
+        } else {
+            setErrorsSum(false);
+            props.handleInput('sum',e);
+        }
+    }
+
+    function handleSubmit(e){
+        if(!errorsText && !errorsSum){
+            if(hasData == 1){
+                props.handleUpdate(e, dataObj.id);
+            } else {
+                props.handleSubmitMoney(e);
+            }
+        }
+    }
+
+    function handleSelect(e){
+        props.handleInput('category_id',e);
+    }
 
     return (
         <div> 
@@ -64,13 +106,7 @@ export default function AddMoneyModal(props) {
                             {text}
                         </Typography>
                         <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            <form onSubmit={(e) => {
-                                if(hasData == 1){
-                                    props.handleUpdate(e, dataObj.id);
-                                } else {
-                                    props.handleSubmitMoney(e);
-                                }
-                            }} className='modalBox'>
+                            <form onSubmit={(e) => handleSubmit(e)} className='modalBox'>
 
                                 <input hidden type="money_type" value={text} onChange={(e)=>props.handleInput('money_type',e)}/>
 
@@ -82,7 +118,7 @@ export default function AddMoneyModal(props) {
                                                 labelId="demo-simple-select-helper-label" fullWidth
                                                 id="demo-simple-select-helper"
                                                 label="Category"
-                                                type="category_id" onChange={(e)=>props.handleInput('category_id',e)}
+                                                type="category_id" onChange={(e)=>handleSelect(e)}
                                                 defaultValue={!hasData ? "Выберите категорию" : dataObj.category_id}
                                             >
                                                 {props.catList.map((category) => (
@@ -96,45 +132,57 @@ export default function AddMoneyModal(props) {
                                 }
  
                                 
-                                {hasData 
-                                    ? 
-                                        <TextField
-                                            id="outlined-multiline-flexible" className='modalBoxItem'
-                                            label="Description"
-                                            multiline
-                                            maxRows={4}
-                                            type="desc" onChange={(e)=>props.handleInput('desc',e)} defaultValue={dataObj.desc}
-                                        />
-                                    :                                     
-                                        <TextField
-                                            id="outlined-multiline-flexible" className='modalBoxItem'
-                                            label="Description"
-                                            multiline
-                                            maxRows={4}
-                                            type="desc" onChange={(e)=>props.handleInput('desc',e)} 
-                                        />
-                                }
                                 
-                                {hasData 
-                                    ? 
-                                        <TextField
-                                            id="outlined-multiline-flexible" className='modalBoxItem'
-                                            label="Sum"
-                                            multiline
-                                            maxRows={4}
-                                            type="sum" onChange={(e)=>props.handleInput('sum',e)} defaultValue={dataObj.sum}
-                                        />
-                                    : 
-                                        <TextField
-                                            id="outlined-multiline-flexible" className='modalBoxItem'
-                                            label="Sum"
-                                            multiline
-                                            maxRows={4}
-                                            type="sum" onChange={(e)=>props.handleInput('sum',e)}
-                                        />
-                                }
+                                <TextField
+                                    id="outlined-multiline-flexible" className='modalBoxItem'
+                                    label="Description"
+                                    multiline
+                                    maxRows={4}
+                                    type="desc" onChange={(e)=>handleText(e)} 
+                                    defaultValue={hasData ? dataObj.desc: ''}
+                                    error={errorsText}
+                                />
+                                
+                                <TextField
+                                    id="outlined-multiline-flexible" className='modalBoxItem'
+                                    label="Sum"
+                                    multiline
+                                    maxRows={4}
+                                    type="sum" onChange={(e)=>handleSum(e)} 
+                                    defaultValue={hasData ? dataObj.sum : ''}
+                                    error={errorsSum}
+                                />
 
-                                <Button variant="contained" type="submit" value="Submit">Submit</Button>
+                                {props.type == "expenses"
+                                    ? 
+                                    <Button 
+                                        variant="contained" 
+                                        disabled={
+                                            errorsSum 
+                                            || errorsText 
+                                            || (props.categorieID == 0 && !hasData)
+                                            || (props.desc == '' && !hasData)
+                                            || (props.sum == '' && !hasData)
+                                        } 
+                                        type="submit" 
+                                        value="Submit"
+                                    >Submit</Button>
+                                    : 
+                                    <Button 
+                                        variant="contained" 
+                                        disabled={
+                                            errorsSum 
+                                            || errorsText
+                                            || (props.desc == '' && !hasData)
+                                            || (props.sum == '' && !hasData)
+                                        } 
+                                        type="submit" 
+                                        value="Submit"
+                                    >Submit</Button>
+                                }
+                                 <Typography component="div">
+                                    <Box sx={{ fontStyle: 'italic', m: 1 }}>All fields required</Box>
+                                </Typography>
                             </form>
 
                         </Typography>

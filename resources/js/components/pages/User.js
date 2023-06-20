@@ -20,7 +20,6 @@ import AddMoneyModal from "../basecomponents/AddMoneyModal";
 import UserExpensesTable from '../basecomponents/UserExpensesTable';
 import UserIncomeTable from '../basecomponents/UserIncomeTable';
 import Loading from '../Loading';
-import { set } from 'lodash';
 
 
 function User() {
@@ -177,6 +176,9 @@ function User() {
                             catList={ catList }
                             dataToUpdate={ dataToUpdate }
                             setDataToUpdate={ setDataToUpdate }
+                            categorieID={ categorieID }
+                            sum={ sum }
+                            desc={ desc }
                         ></AddMoneyModal>
                     </div>
                 </div>
