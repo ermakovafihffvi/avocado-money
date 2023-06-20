@@ -55,7 +55,7 @@ class Category extends Controller
         $endDate = $period["end_date"];
         return ModelsExpenses::select('*')
             ->where('category_id', $id)
-            //->where('created_at', ">", $startDate)
+            ->where('created_at', ">", $startDate)
             ->get(); //добавить условие на даты
     }
 
