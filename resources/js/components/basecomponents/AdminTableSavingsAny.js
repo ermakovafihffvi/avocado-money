@@ -62,7 +62,7 @@ function AdminTableSavingsAny(props) {
     return (
         <>
             <Typography variant="h5" component="h2" className='add-additional-title'>
-                Добавить деньги из других источников
+                Добавить деньги в копилку
                 <div className="svg-box">
                     {
                         success ?
