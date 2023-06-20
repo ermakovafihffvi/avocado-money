@@ -20,6 +20,14 @@ function Row (props) {
     let expensesObj = props.expensesObj;
     let category = props.category;
     const [openRow, setOpenRow] = React.useState(false);
+    let categoryItemExp = props.categoriesArr.filter(cat => cat.str_id == category)[0];
+    let remainSum = props.evaluateRemaining(categoryItemExp, props.homeData.expenses.common[categoryItemExp.str_id]);
+    const styles = {
+        remain_sum: {
+            color: remainSum > 0 ? 'green' : 'red',
+            width: props.width
+        }
+    };
     return (
         <React.Fragment>
             <TableRow key={"cat_" + expensesObj[category].details[0].title}>
@@ -28,6 +36,10 @@ function Row (props) {
                         <TableRow>
                             <TableCell style={{ width: props.width }}>
                                 {expensesObj[category].details[0].title}
+                            </TableCell>
+                            <TableCell style={{ width: props.width }}>{categoryItemExp.limit}</TableCell>
+                            <TableCell className='remain_sum' style={styles.remain_sum}>
+                                {remainSum}
                             </TableCell>
                             <TableCell>
                                 {expensesObj[category].total}
@@ -102,6 +114,8 @@ function UserExpensesTable(props) {
                             <Table>
                                 <TableHead>
                                     <TableCell style={{width: width}}>Category</TableCell>
+                                    <TableCell style={{width: width}}>Limit</TableCell>
+                                    <TableCell style={{width: width}}>Remain</TableCell>
                                     <TableCell>Total</TableCell>
                                 </TableHead>
                             </Table>
@@ -118,6 +132,9 @@ function UserExpensesTable(props) {
                                 setMoneyType={ props.setMoneyType }
                                 setDataToUpdate={ props.setDataToUpdate }
                                 handleDelete={ props.handleDelete }
+                                homeData={ props.homeData }
+                                categoriesArr={ props.categoriesArr }    
+                                evaluateRemaining={ props.evaluateRemaining }                            
                             >
                             </Row>
                         ))}

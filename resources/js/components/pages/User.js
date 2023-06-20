@@ -8,6 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { userPageSelector } from '../../redux/userPageReducer/userPageSelector';
 import { userPageInitiate } from '../../redux/userPageReducer/actions';
 import { loadingUserPageSelector} from "../../redux/userPageReducer/userPageSelector";
+import { categoryExpSelector } from '../../redux/caregoryExpReducer/categoryExpSelector';
+import { categoryExpInitiate } from '../../redux/caregoryExpReducer/actions';
+import { loadingCategoryExpSelector } from "../../redux/caregoryExpReducer/categoryExpSelector";
+import { homeSelector, loadingHomeSelector } from '../../redux/homeReducer/homeSelector';
+import { homeInitiate } from '../../redux/homeReducer/actions';
 
 import { userPagePost, userPageUpdate, userPageDelete } from '../../redux/userPageReducer/actions';
 
@@ -24,6 +29,12 @@ function User() {
     const dispatch = useDispatch();
     const userPageArr = useSelector(userPageSelector);
     const loading = useSelector(loadingUserPageSelector);
+
+    const categoriesArr = useSelector(categoryExpSelector);
+    const homeData = useSelector(homeSelector);
+    const loadingCatExp = useSelector(loadingCategoryExpSelector);
+    const loadingHomeData = useSelector(loadingHomeSelector);
+
     const [pop, setPop] = useState(false); 
 
     let totalExpenses = 0;
@@ -111,9 +122,19 @@ function User() {
 
     useEffect(()=>{
         dispatch(userPageInitiate(params.userId));
+        dispatch(categoryExpInitiate());
+        dispatch(homeInitiate());
     }, [pop, params.userId])
 
-    if(loading || Object.keys(userPageArr).length == 0){
+    function evaluateRemaining(category, wasted){
+        if(!isNaN(category.limit)){
+            return category.limit - wasted;
+        } else {
+            return "--"
+        }
+    }
+
+    if(loading || Object.keys(userPageArr).length == 0 || loadingCatExp || loadingHomeData || homeData.length == 0){
         return (
             <>        
                 <Loading/>
@@ -138,6 +159,9 @@ function User() {
                         setMoneyType={ setMoneyType }
                         setDataToUpdate={ setDataToUpdate }
                         handleUpdate={ handleUpdate }
+                        evaluateRemaining={ evaluateRemaining }
+                        homeData={ homeData }
+                        categoriesArr={ categoriesArr }
                     ></UserExpensesTable>
                     <div className='userpage-buttons-block'>
                         <Typography variant="h4" gutterBottom>Expenses total: {totalExpenses}</Typography>
