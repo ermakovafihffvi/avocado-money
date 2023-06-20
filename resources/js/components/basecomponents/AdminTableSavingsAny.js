@@ -10,13 +10,16 @@ import Typography from '@mui/material/Typography';
 import SvgIcon from '@mui/material/SvgIcon';
 import Loading from '../Loading';
 
+import { validateSumMoney } from '../../functions/sumMoneyValidation';
+
 function AdminTableSavingsAny(props) {
     let categoriesSaving = props.categoriesSaving;
     let sourceSaving = props.sourceSaving;
 
     const [cat, setCat] = useState(0);
     const [source, setSource] = useState(0);
-    const [sum, setSum] = useState(0);
+    const [sum, setSum] = useState('');
+    const [errorsSum, setErrorsSum] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -32,6 +35,16 @@ function AdminTableSavingsAny(props) {
             setSource(e.target.value);
         } else if(type == "sum"){
             setSum(e.target.value);
+        }
+    }
+
+    function handleSumInput(e){
+        handleInput("sum", e);
+        let validationPassed = validateSumMoney(e.target.value);
+        if(!validationPassed){
+            setErrorsSum(true);
+        } else {
+            setErrorsSum(false);
         }
     }
 
@@ -128,16 +141,21 @@ function AdminTableSavingsAny(props) {
                         id="outlined-multiline-flexible" className=''
                         label="Sum"
                         value={sum}
-                        type="desc" onChange={(e) => handleInput("sum", e)}
+                        error={errorsSum}
+                        type="desc" onChange={(e) => handleSumInput(e)}
                     />
                     <Button
                         variant="contained"
                         value="confirm"
+                        disabled={errorsSum || source == 0 || cat == 0 }
                         onClick={(e) => {
                             handleConfirmAdditional(e);
                         }}
                     >Confirm</Button>
                 </div>
+                <Typography component="div">
+                    <Box sx={{ fontStyle: 'italic', m: 1 }}>All fields required</Box>
+                </Typography>
 
             </Box>
         </>
