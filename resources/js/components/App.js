@@ -16,15 +16,15 @@ import createCache from '@emotion/cache';
 import { CacheProvider, css } from '@emotion/react' 
 
 function App() {
-    const nonce = new Buffer(uuidv4()).toString('base64');
-    const cache = createCache({
+    //const nonce = new Buffer(uuidv4()).toString('base64');
+    /*const cache = createCache({
         key: 'my-prefix-key',
         nonce: nonce,
         prepend: true,
       });
-
+    */
     return (
-        <CacheProvider value={cache}>
+        //<CacheProvider value={cache}>
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<Home/>}></Route>
@@ -37,7 +37,7 @@ function App() {
                 <Route path={'/login'} element={<Login/>}></Route>
                 <Route path={'*'} element={<NotFound/>}></Route>
             </Routes>
-        </CacheProvider>   
+        //</CacheProvider>   
     );
 }
 
