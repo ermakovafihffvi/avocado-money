@@ -11,7 +11,7 @@ import Admin from './pages/Admin';
 import '../../css/app.css';
 import Login from './pages/Login';
 
-import uuidv4 from 'uuid/v4';
+import uuidv4 from 'uuidv4';
 import createCache from '@emotion/cache';
 import { CacheProvider, css } from '@emotion/react' 
 
