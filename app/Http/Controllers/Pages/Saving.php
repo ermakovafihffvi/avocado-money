@@ -78,6 +78,7 @@ class Saving extends Controller
             ->where('category_exp.str_id', '=', 'moving')
             ->orWhere('category_exp.str_id', '=', 'unexpected')
             ->orWhere('category_exp.str_id', '=', 'bigexpenses')
+	    ->orderBy('created_at', 'desc')
             ->get();
     }
 }
