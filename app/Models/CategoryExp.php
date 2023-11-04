@@ -10,5 +10,5 @@ class CategoryExp extends Model
     use HasFactory;
     public $table = "category_exp";
     public $timestamps = false;
-    protected $fillable = array('title', 'str_id', 'limit', 'isActive');
+    protected $fillable = array('title', 'str_id', 'limit', 'isActive', 'currency_id', 'desc');
 }

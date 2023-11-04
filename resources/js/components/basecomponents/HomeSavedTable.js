@@ -21,7 +21,7 @@ function HomeSavedTable(props) {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell colSpan={5}>Saved for this month till now</TableCell>
+                            <TableCell colSpan={savingCatArr.length + 2}>Saved for this month till now</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>User</TableCell>
