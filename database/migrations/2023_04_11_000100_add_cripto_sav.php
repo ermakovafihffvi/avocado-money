@@ -15,9 +15,6 @@ class AddCriptoSav extends Migration
      */
     public function up()
     {
-        $rubleId = Currency::where("str_id", "RUB")->first()->id;
-        $usdtId = Currency::where("str_id", "USDT")->first()->id;
-
         Schema::table('category_savings', function (Blueprint $table) {
             if (!Schema::hasColumn('category_savings', 'currency_id')) {
                 $table->integer('currency_id')->nullable();
@@ -26,27 +23,6 @@ class AddCriptoSav extends Migration
             $table->string('desc')->nullable();
             }
         });
-
-        CategorySavings::get()->each(function ($category, int $key) use ($rubleId) {
-            $category->currency_id = $rubleId;
-            $category->save();
-        });
-
-        CategorySavings::firstOrCreate([
-            "title" => "BYBIT Alex",
-            "limit" => 0,
-            "str_id" => "cryptoAlex",
-            "currency_id" => $usdtId,
-            "desc" => ""
-        ]);
-
-        CategorySavings::firstOrCreate([
-            "title" => "BYBIT Plusha",
-            "limit" => 0,
-            "str_id" => "cryptoPlusha",
-            "currency_id" => $usdtId,
-            "desc" => ""
-        ]);
     }
 
     /**

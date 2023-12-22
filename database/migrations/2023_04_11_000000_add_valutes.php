@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\CategoryExp;
-use App\Models\Currency;
 
 class AddValutes extends Migration
 {
@@ -24,11 +22,6 @@ class AddValutes extends Migration
             });
         }
 
-        Currency::firstOrCreate(["title" => "ruble", "str_id" => "RUB"]);
-        Currency::firstOrCreate(["title" => "dollar", "str_id" => "USD"]);
-        Currency::firstOrCreate(["title" => "euro", "str_id" => "EUR"]);
-        Currency::firstOrCreate(["title" => "crypto dollar", "str_id" => "USDT"]);
-        
         Schema::table('category_exp', function (Blueprint $table) {
             if (!Schema::hasColumn('category_exp', 'currency_id')) {
                 $table->integer('currency_id')->nullable();
@@ -38,11 +31,6 @@ class AddValutes extends Migration
             }
         });
 
-        $rubleId = Currency::where("str_id", "RUB")->first()->id;
-        CategoryExp::get()->each(function ($category, int $key) use ($rubleId) {
-            $category->currency_id = $rubleId;
-            $category->save();
-        });
     }
 
     /**

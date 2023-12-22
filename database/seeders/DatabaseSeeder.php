@@ -26,7 +26,10 @@ class DatabaseSeeder extends Seeder
             TestUserToGroup::class,
             Savings::class,
             SavingsExp::class,
-            CategoryExpAddRepair::class
+            CategoryExpAddRepair::class,
+            Valutes::class,
+            CategorySavingVal::class,
+            CategoryExpCryptoAndCashe::class
         ]);
     }
 }

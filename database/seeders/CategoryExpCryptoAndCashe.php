@@ -1,19 +1,32 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use App\Models\CategorySavings;
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Currency;
 use App\Models\CategoryExp;
+use App\Models\CategorySavings;
 
-class AddCashSav extends Migration
+class CategoryExpCryptoAndCashe extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
+        $currencyId = Currency::where("str_id", "USDT")->first()->id;
+        CategoryExp::firstOrCreate([
+            "title" => "BYBIT",
+            "limit" => "infty",
+            "isActive" => true,
+            "str_id" => "cryptoBybit",
+            "currency_id" => $currencyId,
+            "desc" => ""
+        ]);
+
         $dollarId = Currency::where("str_id", "USD")->first()->id;
 
         CategoryExp::firstOrCreate([
@@ -40,15 +53,5 @@ class AddCashSav extends Migration
             "currency_id" => $dollarId,
             "desc" => ""
         ]);
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
     }
 }
