@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            CategoryExp::class,
+            CategoryExpShek::class,
             CategorySavings::class,
             SavingSource::class,
             TestUser::class,
@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             //TestIncome::class,
             TestUserGroup::class,
             TestUserToGroup::class,
-            Savings::class,
-            SavingsExp::class,
+            //Savings::class,
+            //SavingsExp::class,
             CategoryExpAddRepair::class,
             Valutes::class,
             CategorySavingVal::class,

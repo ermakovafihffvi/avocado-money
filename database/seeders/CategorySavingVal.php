@@ -18,6 +18,7 @@ class CategorySavingVal extends Seeder
     {
         $rubleId = Currency::where("str_id", "RUB")->first()->id;
         $usdtId = Currency::where("str_id", "USDT")->first()->id;
+        $shek = Currency::where("str_id", "ILS")->first()->id;
 
         CategorySavings::get()->each(function ($category, int $key) use ($rubleId) {
             $category->currency_id = $rubleId;
@@ -37,6 +38,22 @@ class CategorySavingVal extends Seeder
             "limit" => 0,
             "str_id" => "cryptoPlusha",
             "currency_id" => $usdtId,
+            "desc" => ""
+        ]);
+
+        CategorySavings::firstOrCreate([
+            "title" => "Shekel cash Alex",
+            "limit" => 0,
+            "str_id" => "shekel Alex",
+            "currency_id" => $shek,
+            "desc" => ""
+        ]);
+
+        CategorySavings::firstOrCreate([
+            "title" => "Shekel cach Plusha",
+            "limit" => 0,
+            "str_id" => "shekel Plusha",
+            "currency_id" => $shek,
             "desc" => ""
         ]);
     }
