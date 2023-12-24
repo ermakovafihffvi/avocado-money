@@ -42,11 +42,12 @@ function Home() {
     function summExpenses() {
         let sum = 0;
         for(let category in homeData.expenses.common){
-            if(category != "unexpected" && category != "moving" && category != "bigexpenses"){
-                if(categoriesArr.find(cat => cat.str_id === category).isActive){
+            let cat = categoriesArr.find(cat => cat.str_id === category);
+            //if(category != "unexpected" && category != "moving" && category != "bigexpenses"){
+                if(cat.isActive && !cat.special){
                     sum += homeData.expenses.common[category];
                 }
-            }
+            //}
         }
         return sum;
     }
@@ -54,24 +55,24 @@ function Home() {
     function summLimits() {
         let summLimit = 0;
         categoriesArr.forEach(category => {
-            if(!isNaN(category.limit) && category.str_id != "unexpected" && category.str_id != "moving" && category.str_id != "bigexpenses"){
-                if(category.isActive){
+            //if(!isNaN(category.limit) && category.str_id != "unexpected" && category.str_id != "moving" && category.str_id != "bigexpenses"){
+                if(category.isActive && !isNaN(category.limit) && !category.special){
                     summLimit += Number(category.limit);
                 }
-            } 
+            //} 
         })
         return summLimit;
     }
     function summRemainings(){
         let commonLimitRemainings = 0;
         categoriesArr.forEach(category => {
-            if(!isNaN(category.limit) && category.str_id != "unexpected" && category.str_id != "moving" && category.str_id != "bigexpenses"){
-                if(category.isActive){
+            //if(!isNaN(category.limit) && category.str_id != "unexpected" && category.str_id != "moving" && category.str_id != "bigexpenses"){
+                if(category.isActive && !isNaN(category.limit) && !category.special){
                     commonLimitRemainings = Number(Number(commonLimitRemainings) 
                                             + Number(category.limit) 
                                             - Number(homeData.expenses.common[category.str_id])); 
                 }
-            } 
+            //} 
         })
         return commonLimitRemainings;
     }
@@ -86,6 +87,7 @@ function Home() {
 
         const moneyManager = new RemainingMoneyManager(homeData, categoriesSaving);
         let expenses = moneyManager.getRemaining();
+        console.log(categoriesSaving);
 
         return (
             <>    

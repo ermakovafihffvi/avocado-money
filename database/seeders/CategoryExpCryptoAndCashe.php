@@ -19,39 +19,67 @@ class CategoryExpCryptoAndCashe extends Seeder
     {
         $currencyId = Currency::where("str_id", "USDT")->first()->id;
         CategoryExp::firstOrCreate([
-            "title" => "BYBIT",
+            "title" => "BYBIT Alex",
             "limit" => "infty",
             "isActive" => true,
-            "str_id" => "cryptoBybit",
+            "str_id" => "cryptoAlex",
             "currency_id" => $currencyId,
-            "desc" => ""
+            "desc" => "",
+            "special" => true
+        ]);
+
+        CategoryExp::firstOrCreate([
+            "title" => "BYBIT Plusha",
+            "limit" => "infty",
+            "isActive" => true,
+            "str_id" => "cryptoPlusha",
+            "currency_id" => $currencyId,
+            "desc" => "",
+            "special" => true
         ]);
 
         $dollarId = Currency::where("str_id", "USD")->first()->id;
 
         CategoryExp::firstOrCreate([
-            "title" => "Dollar cash",
+            "title" => "Dollar cash Alex",
             "limit" => "infty",
             "isActive" => true,
-            "str_id" => "dollarCash",
-            "currency_id" => $dollarId,
-            "desc" => ""
-        ]);
-
-        CategorySavings::firstOrCreate([
-            "title" => "Dollar cash Alex",
-            "limit" => 0,
             "str_id" => "dollarCashAlex",
             "currency_id" => $dollarId,
-            "desc" => ""
+            "desc" => "",
+            "special" => true
         ]);
 
-        CategorySavings::firstOrCreate([
+        CategoryExp::firstOrCreate([
             "title" => "Dollar cash Plusha",
-            "limit" => 0,
+            "limit" => "infty",
+            "isActive" => true,
             "str_id" => "dollarCashPlusha",
             "currency_id" => $dollarId,
-            "desc" => ""
+            "desc" => "",
+            "special" => true
+        ]);
+
+        $shek = Currency::where("str_id", "ILS")->first()->id;
+
+        CategoryExp::firstOrCreate([
+            "title" => "Shekel cash Alex",
+            "limit" => 0,
+            "str_id" => "shekelAlex",
+            "currency_id" => $shek,
+            "desc" => "",
+            "special" => true,
+            "isActive" => true,
+        ]);
+
+        CategoryExp::firstOrCreate([
+            "title" => "Shekel cach Plusha",
+            "limit" => 0,
+            "str_id" => "shekelPlusha",
+            "currency_id" => $shek,
+            "desc" => "",
+            "special" => true,
+            "isActive" => true,
         ]);
     }
 }

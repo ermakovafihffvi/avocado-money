@@ -75,9 +75,7 @@ class Saving extends Controller
             ->join('user', 'expenses.user_id', '=', 'user.id')
             ->join('category_exp', 'expenses.category_id', '=', 'category_exp.id')
             ->select('expenses.*', 'user.name', 'category_exp.str_id', 'category_exp.title')
-            ->where('category_exp.str_id', '=', 'moving')
-            ->orWhere('category_exp.str_id', '=', 'unexpected')
-            ->orWhere('category_exp.str_id', '=', 'bigexpenses')
+            ->where('category_exp.special', '=', true)
 	    ->orderBy('created_at', 'desc')
             ->get();
     }

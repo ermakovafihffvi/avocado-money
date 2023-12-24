@@ -19,17 +19,18 @@ class DatabaseSeeder extends Seeder
             CategorySavings::class,
             SavingSource::class,
             TestUser::class,
-            //TestExpenses::class,
-            //TestSavings::class,
-            //TestIncome::class,
+                //TestExpenses::class,
+                //TestSavings::class,
+                //TestIncome::class,
             TestUserGroup::class,
             TestUserToGroup::class,
-            //Savings::class,
-            //SavingsExp::class,
+                //Savings::class,
+                //SavingsExp::class,
             CategoryExpAddRepair::class,
             Valutes::class,
             CategorySavingVal::class,
-            CategoryExpCryptoAndCashe::class
+            CategoryExpCryptoAndCashe::class,
+            CategorySavingEuro::class
         ]);
     }
 }

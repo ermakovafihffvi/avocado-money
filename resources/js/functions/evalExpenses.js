@@ -33,7 +33,8 @@ class RemainingMoneyManager {
                 "categories": {} 
             };
 
-    
+            //old logic
+            /* 
             categoriesSaving.forEach(category => {
 
                 if((remSum > (category.limit - additionalArr[category.str_id].sum)) && category.limit != 0){ //если юзер может заполнить категорию до конца
@@ -47,7 +48,10 @@ class RemainingMoneyManager {
                 }
                 remaining[i]["remSum"] += remaining[i]["categories"][category.str_id];
 
-            });
+            });*/
+            
+            //new logic 24.12.2023
+            remaining[i]["remSum"] = remSum;
         }
 
         this.remaining = remaining;

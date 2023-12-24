@@ -48,9 +48,11 @@ class Home extends Controller
                 foreach($expenses as $expense){
                     if(($expense["category_id"] == $category["id"]) && ($user["id"] == $expense["user_id"])){
                         $resArr["expenses"]["users"][$user["id"]]["categories"][$category["str_id"]][] = $expense;
-                        if($category["str_id"] != "moving" && $category["str_id"] != "unexpected" && $category["str_id"] != "bigexpenses"){
+
+                        if(!$category["special"]){
                             $resArr["expenses"]["users"][$user["id"]]["total"] += $expense["sum"];   
                         }
+
                         $resArr["expenses"]["common"][$category["str_id"]] += $expense["sum"];
                         $resArr["expenses"]["total"] += $expense["sum"];
                     }
@@ -85,7 +87,7 @@ class Home extends Controller
     }
 
     public function getCategoriesList(){
-        return ModelsCategoryExp::select('id', 'title', 'str_id')->get();
+        return ModelsCategoryExp::select('id', 'title', 'str_id', 'special')->get();
     }
 
     public function getAllUsers(){

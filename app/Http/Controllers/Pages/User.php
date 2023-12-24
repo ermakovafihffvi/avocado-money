@@ -81,6 +81,6 @@ class User extends Controller
     }
 
     public function getAllExpCategories(){
-        return ModelsCategoryExp::select('id', 'title', 'str_id')->get();
+        return ModelsCategoryExp::select('id', 'title', 'str_id', 'special')->get();
     }
 }

@@ -16,7 +16,7 @@ class CategoryExpAddRepair extends Seeder
     public function run()
     {
         CategoryExp::firstOrCreate([
-            'title' => 'ремонт', 'str_id' => 'repairing', 'limit' => 0, 'isActive' => true
+            'title' => 'ремонт', 'str_id' => 'repairing', 'limit' => 0, 'isActive' => false
         ]);
     }
 }

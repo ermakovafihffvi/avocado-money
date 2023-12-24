@@ -112,7 +112,8 @@ function User() {
 
     const countTotalExp = () => {
         for(let category in userPageArr.expenses){
-            if(category != "unexpected" && category != "moving" && category != "bigexpenses"){
+            let cat = categoriesArr.filter(item => item.str_id == category)[0];
+            if(!cat.special){
                 totalExpenses += userPageArr.expenses[category].total;    
             }
             totalExpensesFull += userPageArr.expenses[category].total;
@@ -164,7 +165,7 @@ function User() {
                     ></UserExpensesTable>
                     <div className='userpage-buttons-block'>
                         <Typography variant="h4" gutterBottom>Expenses total: {totalExpenses}</Typography>
-                        <Typography variant="h4" gutterBottom>Full expenses: {totalExpensesFull}</Typography>
+                        {/*<Typography variant="h4" gutterBottom>Full expenses: {totalExpensesFull}</Typography>*/}
                         <Button onClick={() => {setOpen(true); setMoneyType("expenses")}} variant="contained" size="large">Add expense</Button>
                         <AddMoneyModal 
                             open={ open } 

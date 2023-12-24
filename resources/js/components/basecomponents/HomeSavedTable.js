@@ -25,9 +25,9 @@ function HomeSavedTable(props) {
                         </TableRow>
                         <TableRow>
                             <TableCell>User</TableCell>
-                            {savingCatArr.map((catеgory) => (
+                            {/*savingCatArr.map((catеgory) => (
                                 <TableCell key={"category_" + catеgory.id}>{catеgory.title}</TableCell>
-                            ))}
+                            ))*/}
                             <TableCell>Total</TableCell>
                         </TableRow>
                     </TableHead>
@@ -43,9 +43,9 @@ function HomeSavedTable(props) {
                                     </NavLink>
                                 </TableCell>
 
-                                {Object.keys(expenses[key].categories).map((category, index) => (
+                                {/*Object.keys(expenses[key].categories).map((category, index) => (
                                     <TableCell>{expenses[key].categories[category]}</TableCell>
-                                ))}
+                                ))*/}
 
                                 <TableCell>{expenses[key].remSum > 0 ? expenses[key].remSum : 0}</TableCell>
                             </TableRow>

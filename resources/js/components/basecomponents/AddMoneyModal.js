@@ -137,7 +137,7 @@ export default function AddMoneyModal(props) {
                                     id="outlined-multiline-flexible" className='modalBoxItem'
                                     label="Description"
                                     multiline
-                                    maxRows={4}
+                                    maxRows={50}
                                     type="desc" onChange={(e)=>handleText(e)} 
                                     defaultValue={hasData ? dataObj.desc: ''}
                                     error={errorsText}
